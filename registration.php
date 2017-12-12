@@ -1,4 +1,23 @@
-<?php require __DIR__.'/views/header.php'; ?>
+<?php require __DIR__.'/views/header.php';
+
+$user = $pdo->prepare("SELECT username from users");
+$user->execute();
+$usernamesGet = $user->fetchAll(PDO::FETCH_ASSOC);
+$usernamesJSON = fopen("./assets/JSON/usernames.json", "w");
+
+// $user = JSON_encode($user);
+
+  foreach ($usernamesGet as $key => $value) {
+
+    $usernamesClean = $value['username'];
+    var_dump($usernamesJSON);
+    fwrite($usernamesJSON,json_encode($usernamesClean));
+
+  }
+
+ ?>
+
+
 
 <article>
     <h1>Registration</h1>
@@ -28,7 +47,7 @@
             <small class="form-text text-muted">Please repeat your password (passphrase).</small>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </article>
 

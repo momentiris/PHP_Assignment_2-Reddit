@@ -1,1 +1,7 @@
-/* In this file you can add your custom styles. */
+html {
+  font-size: 16px;
+}
+
+.container {
+  min-width: 100vw;
+}
