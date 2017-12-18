@@ -16,3 +16,7 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+function timeRightNow() {
+  return date('m/d/Y h:i:s');
+}
