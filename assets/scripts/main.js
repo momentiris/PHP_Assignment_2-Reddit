@@ -12,8 +12,7 @@ fetch(`${api}/?page=${page}`)
     return response.json();
   })
   .then(postsOnPage => {
-    totalPosts = postsOnPage['total'][0];
-    console.log(JSON.parse(totalPosts));
+    totalPosts = JSON.parse(postsOnPage['total'][0]);
     for (posts of postsOnPage['posts'][0]) {
       let postElement =  `<div class="card postcontainer" style="margin-bottom: 1rem;padding: 0;">
         <div class="card-body">
@@ -26,20 +25,20 @@ fetch(`${api}/?page=${page}`)
         </div>`;
           divElement.innerHTML += postElement;
           postContainer.appendChild(divElement);
-
-
     }
-});
+})
 }
+
 getPage(pageNum);
 
 
   window.addEventListener('scroll', function() {
-
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+    let currentAmountOfPosts = postContainer.querySelectorAll('.card').length;
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts){
+      console.log(currentAmountOfPosts, totalPosts);
       pageNum++;
         getPage(pageNum);
-        let postContainerChildren = postContainer.querySelectorAll('.card').length;
-        console.log(postContainerChildren);
+        console.log('hej');
+
     }
   });
