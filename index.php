@@ -11,30 +11,13 @@
   ?>
 <a href="?test=test">TEST</a>
 
-<?php foreach ($posts as $post => $value): ?>
-<div class="card postcontainer" style="margin-bottom: 1rem;padding: 0;">
-<div class="card-body">
-  <h5 class="card-title"><?php echo $value['title']?></h4>
-  <p class="card-text small"><?php echo $value['content'];?></p>
-  <p class="card-text small"><?php echo $value['url'];?></p>
-  <p class="card-text small"><?php echo $value['username'];?></p>
-  <p class="card-text small"><?php echo $value['time'];?></p>
-  <a href="#" style="padding: 0;"class="btn">Go somewhere</a>
-</div>
-</div>
-<?php endforeach; ?>
+  <div class="container py-3 postcontainer" style="margin: 0;">
+
+
+
 
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
 
 
 <article>

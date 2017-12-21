@@ -43,12 +43,6 @@ function login($pdo, $username, $passwordInput) {
      }
 }
 
-function getPosts($posts) {
-  $posts = $posts->prepare('SELECT title, content FROM posts');
-  $posts->execute();
-  $posts = $posts->fetchAll(PDO::FETCH_ASSOC);
-  echo 'hej';
 
-}
 
 ?>
