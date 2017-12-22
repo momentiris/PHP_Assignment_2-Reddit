@@ -34,6 +34,7 @@ function login($pdo, $username, $passwordInput) {
               'name'  => $user['username'],
               'id'    => $user['id'],
           ];
+
          redirect ('./../../index.php');
       } else {
           echo 'wrong password';
@@ -41,6 +42,20 @@ function login($pdo, $username, $passwordInput) {
   } else {
       redirect ('./../../login.php');
      }
+}
+
+function getProfile($pdo) {
+  $sId = (int)$_SESSION['user']['id'];
+  $countPosts = $pdo->prepare("SELECT COUNT('author_id') FROM posts WHERE author_id = $sId");
+  $countPosts ->execute();
+  $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
+  var_dump($totalAmountOfPosts);
+  // $user = $pdo->prepare('SELECT posts.title, posts.content, posts.time, posts.author_id, users.username, users.email, users.userdate FROM posts LEFT JOIN users ON posts.author_id = users.id WHERE posts.author_id = :id');
+  $user = $pdo->prepare('SELECT users.username, users.email, users.userdate FROM users WHERE id = :id LIMIT 1');
+  $user->bindParam(':id', $sId, PDO::PARAM_INT);
+  $user->execute();
+  $result = $user->fetchAll(PDO::FETCH_ASSOC);
+  return $result;
 }
 
 

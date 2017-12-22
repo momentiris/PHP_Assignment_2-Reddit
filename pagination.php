@@ -6,17 +6,13 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $postsPerPage = 5;
 $start = ($page > 1) ? ($page * $postsPerPage) - $postsPerPage : 0;
 
-// $countRows = $pdo->prepare("SELECT title, content, url, time, username FROM posts");
-// $countRows->execute();
-// $counted = $countRows->fetchAll(PDO::FETCH_ASSOC);
-// $total = count($counted);
 
 $countPosts = $pdo->prepare("SELECT COUNT('id') FROM posts");
 $countPosts ->execute();
 $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
 
 
-$posts = $pdo->prepare("SELECT title, content, url, time, username FROM posts LIMIT $start, $postsPerPage");
+$posts = $pdo->prepare("SELECT title, content, url, time, username, votes FROM posts LIMIT $start, $postsPerPage");
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);
 
