@@ -14,7 +14,7 @@ voteButton.classList.add('upvote');
 
 voteButton.innerText = "upvotes";
 voteButton.dataset.dir = "1";
-voteButton.setAttribute("value", ``);
+
 
 
 const voteFunc = (e) => {
@@ -22,7 +22,7 @@ const voteFunc = (e) => {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
       credentials: "include",
-      body: `upvote=${e.target.dataset.value}&dir=${e.target.dataset.dir}`
+      body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
     .then(response => {
       console.log(response.json());
@@ -49,7 +49,7 @@ fetch(`${api}/?page=${page}`)
   .then(postsOnPage => {
     totalPosts = JSON.parse(postsOnPage['total'][0]);
     for (posts of postsOnPage['posts'][0]) {
-      voteButton.setAttribute("value", `${posts.author_id}`);
+      voteButton.setAttribute("value", `${posts.id}`);
       let postElement =
       `<div class="card postcontainer" style="margin-bottom: 1rem;padding: 0;">
         <div class="card-body">
@@ -59,11 +59,12 @@ fetch(`${api}/?page=${page}`)
           <p class="card-text small username">${posts.username}</p>
           <p class="card-text small time">${posts.time}</p>
           <p class="card-text small votes">${posts.votes}</p>
+          ${voteButton.outerHTML}
         </div>
       </div>`;
           divElement.innerHTML += postElement;
           postContainer.appendChild(divElement);
-          divElement.appendChild(voteButton);
+
     };
 
           const upvoteArr = document.querySelectorAll('.upvote');

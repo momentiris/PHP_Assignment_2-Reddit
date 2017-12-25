@@ -12,7 +12,7 @@ $countPosts ->execute();
 $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
 
 
-$posts = $pdo->prepare("SELECT title, content, url, time, username, votes, author_id FROM posts LIMIT $start, $postsPerPage");
+$posts = $pdo->prepare("SELECT title, content, url, time, username, votes, author_id, id FROM posts LIMIT $start, $postsPerPage");
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);
 
