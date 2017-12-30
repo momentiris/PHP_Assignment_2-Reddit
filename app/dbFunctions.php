@@ -1,13 +1,15 @@
 <?php
 //New Post
-function newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time) {
-  $user = $pdo->prepare('INSERT INTO posts (author_id, title, content, url, username, time) VALUES (:author_id, :title, :content, :url, :username, :time)');
+function newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time, $upvotes, $downvotes) {
+  $user = $pdo->prepare('INSERT INTO posts (author_id, title, content, url, username, time, upvotes, downvotes) VALUES (:author_id, :title, :content, :url, :username, :time, :upvotes, :downvotes)');
   $user->bindParam(':author_id', $authorId, PDO::PARAM_STR);
   $user->bindParam(':title', $title, PDO::PARAM_STR);
   $user->bindParam(':content', $content, PDO::PARAM_STR);
   $user->bindParam(':url', $url, PDO::PARAM_STR);
   $user->bindParam(':username', $postAuthor, PDO::PARAM_STR);
   $user->bindParam(':time', $time, PDO::PARAM_STR);
+  $user->bindParam(':upvotes', $upvotes, PDO::PARAM_INT);
+  $user->bindParam(':downvotes', $downvotes, PDO::PARAM_INT);
   $user->execute();
 }
 

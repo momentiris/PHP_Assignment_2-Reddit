@@ -9,6 +9,8 @@ if (isset($_POST['title'], $_POST['content'], $_POST['url'])) {
   $content = filter_var($_POST['content'], FILTER_SANITIZE_STRING);
   $url = filter_var($_POST['url'], FILTER_SANITIZE_URL);
   $time = timeRightNow();
-  newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time);
+  $upvotes = 0;
+  $downvotes = 0;
+  newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time, $upvotes, $downvotes);
   redirect ('/index.php');
 }

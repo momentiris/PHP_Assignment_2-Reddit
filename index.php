@@ -1,11 +1,9 @@
 <?php require __DIR__.'/views/header.php';
 
-  $posts = $pdo->prepare('SELECT title, content, url, time, votes username FROM posts');
-  $posts->execute();
-  $posts = $posts->fetchAll(PDO::FETCH_ASSOC);
-  if (isset($_GET['test'])) {
-    echo 'hej';
-  }
+  // $posts = $pdo->prepare('SELECT title, content, url, time, upvotes, username FROM posts');
+  // $posts->execute();
+  // $posts = $posts->fetchAll(PDO::FETCH_ASSOC);
+
   ?>
 
 <a href="?test=test">TEST</a>
