@@ -17,7 +17,6 @@ $countVotes ->execute();
 $totalAmountOfVotes = $countVotes->fetchAll(PDO::FETCH_ASSOC);
 
 
-
 $posts = $pdo->prepare("SELECT title, content, url, time, username, author_id, id, votes FROM posts LIMIT $start, $postsPerPage");
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);

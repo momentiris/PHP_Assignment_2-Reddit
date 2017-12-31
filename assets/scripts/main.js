@@ -1,4 +1,4 @@
-let downVoted = 0;
+
 let pageNum = 1;
 let totalPosts = 0;
 const api = "/../../pagination.php";
@@ -18,8 +18,6 @@ downvoteBtn.innerText = "downvote";
 downvoteBtn.dataset.dir = "-1";
 // end
 
-
-
 const voteFunc = (e) => {
   fetch(voteApi, {
       method: "POST",
@@ -31,10 +29,6 @@ const voteFunc = (e) => {
       console.log(response.json());
 
     })
-
-console.log(e.target.dataset.dir);
-console.log(e.target.value);
-
 }
 
 const upvote = (upvote) => {
