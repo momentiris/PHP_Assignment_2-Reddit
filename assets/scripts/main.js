@@ -62,7 +62,7 @@ fetch(`${api}/?page=${page}`)
           <p class="small content">${posts.content}</p>
           <p class="small username">${posts.username}</p>
           <p class="small time">${posts.time}</p>
-          <p class="small votes">${posts.upvotes - posts.downvotes}</p>
+          <p class="small votes">${posts.votes}</p>
 
           ${upvoteBtn.outerHTML}
           ${downvoteBtn.outerHTML}

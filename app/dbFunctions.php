@@ -1,15 +1,14 @@
 <?php
 //New Post
-function newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time, $upvotes, $downvotes) {
-  $user = $pdo->prepare('INSERT INTO posts (author_id, title, content, url, username, time, upvotes, downvotes) VALUES (:author_id, :title, :content, :url, :username, :time, :upvotes, :downvotes)');
+function newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time, $votes) {
+  $user = $pdo->prepare('INSERT INTO posts (author_id, title, content, url, username, time, votes) VALUES (:author_id, :title, :content, :url, :username, :time, :votes)');
   $user->bindParam(':author_id', $authorId, PDO::PARAM_STR);
   $user->bindParam(':title', $title, PDO::PARAM_STR);
   $user->bindParam(':content', $content, PDO::PARAM_STR);
   $user->bindParam(':url', $url, PDO::PARAM_STR);
   $user->bindParam(':username', $postAuthor, PDO::PARAM_STR);
   $user->bindParam(':time', $time, PDO::PARAM_STR);
-  $user->bindParam(':upvotes', $upvotes, PDO::PARAM_INT);
-  $user->bindParam(':downvotes', $downvotes, PDO::PARAM_INT);
+  $user->bindParam(':votes', $votes, PDO::PARAM_INT);
   $user->execute();
 }
 
@@ -36,7 +35,6 @@ function login($pdo, $username, $passwordInput) {
               'name'  => $user['username'],
               'id'    => $user['id'],
           ];
-
          redirect ('./../../index.php');
       } else {
           echo 'wrong password';
@@ -58,6 +56,23 @@ function getProfile($pdo) {
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
   return $result;
+}
+
+function insertVote($voteValue, $postId, $sId, $pdo) {
+  $vote = "INSERT INTO uservotes(user_id, post_id, vote_value) VALUES(:user_id, :post_id, :vote_value)";
+  $statement = $pdo->prepare($vote);
+  $statement->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $statement->bindParam(':user_id', $sId, PDO::PARAM_INT);
+  $statement->bindParam(':vote_value', $voteValue, PDO::PARAM_INT);
+
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  $statement->execute();
+  $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+  return $result;
+
 }
 
 

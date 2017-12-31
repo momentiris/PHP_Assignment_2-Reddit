@@ -12,58 +12,43 @@ $countPosts ->execute();
 $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
 
 //Get total amount of votes
-$countVotes = $pdo->prepare("SELECT id, sum(uservotes.vote_value) as totalvalue from posts LEFT JOIN uservotes ON uservotes.post_id = posts.id GROUP BY posts.id");
+$countVotes = $pdo->prepare("SELECT id, sum(uservotes.vote_value) as totalvalue from posts LEFT JOIN uservotes ON uservotes.post_id = posts.id GROUP BY posts.id LIMIT $start, $postsPerPage");
 $countVotes ->execute();
 $totalAmountOfVotes = $countVotes->fetchAll(PDO::FETCH_ASSOC);
 
 
- //last update: got votes paired to post_id from from db. mission now is to push to $allArr depending on post_id;
 
-
-$posts = $pdo->prepare("SELECT title, content, url, time, username, author_id, id FROM posts LIMIT $start, $postsPerPage");
+$posts = $pdo->prepare("SELECT title, content, url, time, username, author_id, id, votes FROM posts LIMIT $start, $postsPerPage");
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);
 
+
 $allArr = [
 'posts' => [],
-'total' => []
+'total' => [],
 ];
+
 
 array_push($allArr['posts'], $answer);
 array_push($allArr['total'], $totalAmountOfPosts);
 
-foreach($allArr['posts'][0] as $key=>$fromAllArr)
-{
-
-  foreach($totalAmountOfVotes as $key2=>$value2)
-  {
-
-     if($fromAllArr['id']==$value2['id'])
-     {
-       echo $fromAllArr['id'] . 'is paired with' . $value2['id'] . '</br>';
-
-
-
-     }
- }
+foreach ($allArr['posts'][0] as $key => $value) {
+  foreach ($totalAmountOfVotes as $key2 => $value2) {
+    if ($value['id'] == $value2['id']) {
+      // $value['votes'] = $value2['totalvalue'];
+      $allArr['posts'][0][$key]['votes'] = (int)$value2['totalvalue'];
+      if (is_null($allArr['posts'][0][$key]['votes'])) {
+        $allArr['posts'][0][$key]['votes'] = 0;
+      }
+    }
+  }
 }
-var_dump($allArr);
 
-// $value1['vote'] = $value2['vote'];
-// $result[$key1][]=$value;
-
-// foreach ($allArr as $key => $value) {
-//   var_dump($value);
-// }
-// foreach ($totalAmountOfVotes as $post => $value) {
-// }
-// $pages = ceil($totalAmountOfPosts / $postsPerPage);
+header("content-type: application/json");
+echo json_encode($allArr);
 
 
 
-// header("content-type: application/json");
-// echo json_encode($allArr);
-// echo json_encode($totalAmountOfPosts);
 
 
 
