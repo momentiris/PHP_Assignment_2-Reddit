@@ -6,7 +6,7 @@ $sId = $_SESSION['user']['id'];
 
 //Check if user has voted before
 
-if (isset($_POST['postId'])) {
+if (isset($_POST)) {
 
   $voteValue = $_POST['dir'];
   $postId = $_POST['postId'];
@@ -27,15 +27,15 @@ if (isset($_POST['postId'])) {
   $statement->bindParam('post_id', $postId);
   $statement->execute();
   $resultCheck = $statement->fetchAll(PDO::FETCH_NUM);
-if ($resultCheck) {
-  if ((int)$resultCheck == $voteValue) {
-    return json_encode('no');
+  if ($resultCheck) {
+    if ($resultCheck[0][0] == $voteValue) {
+      echo json_encode('no');
+    } else {
+      updateVote($sId,$pdo,$postId,$voteValue);
+    }
   } else {
-    return updateVote($sId,$pdo,$postId,$voteValue);
+    return insertVote($voteValue, $postId, $sId, $pdo);
   }
-} else {
-return insertVote($voteValue, $postId, $sId, $pdo);
-}
 
 }
 
