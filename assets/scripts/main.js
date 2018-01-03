@@ -50,16 +50,20 @@ fetch(`${api}/?page=${page}`)
       upvoteBtn.setAttribute("value", `${posts.id}`);
       downvoteBtn.setAttribute("value", `${posts.id}`);
       let postElement =
-      `<div class="card">
-        <div class="card-body">
-          <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
-          <p class="small content">${posts.content}</p>
-          <p class="small username">${posts.username}</p>
-          <p class="small time">${posts.time}</p>
-          <p class="small votes">${posts.votes}</p>
+      `<div class="">
+        <div class="postCont">
+          <div class="contentCont">
+            <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
+            <p class="small content">${posts.content}</p>
 
+            <p class="small time">Submitted by <a href="?user">${posts.username}</a> on ${posts.time}</p>
+
+          </div>
+          <div class="voting">
           ${upvoteBtn.outerHTML}
+          <small>${posts.votes}</small>
           ${downvoteBtn.outerHTML}
+          </div>
         </div>
       </div>`;
           divElement.innerHTML += postElement;

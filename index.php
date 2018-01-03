@@ -3,7 +3,9 @@
   // $posts = $pdo->prepare('SELECT title, content, url, time, upvotes, username FROM posts');
   // $posts->execute();
   // $posts = $posts->fetchAll(PDO::FETCH_ASSOC);
-
+if (isset($_GET['test'])) {
+  echo 'hej';
+}
   ?>
 
 <a href="?test=test">TEST</a>

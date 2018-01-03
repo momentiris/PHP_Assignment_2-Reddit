@@ -59,6 +59,8 @@ function getProfile($pdo) {
 }
 
 function insertVote($voteValue, $postId, $sId, $pdo) {
+
+  // Insert vote
   $vote = "INSERT INTO uservotes(user_id, post_id, vote_value) VALUES(:user_id, :post_id, :vote_value)";
   $statement = $pdo->prepare($vote);
   $statement->bindParam(':post_id', $postId, PDO::PARAM_INT);
@@ -71,6 +73,24 @@ function insertVote($voteValue, $postId, $sId, $pdo) {
   $statement->execute();
   $result = $statement->fetchAll(PDO::FETCH_ASSOC);
   return $result;
+}
+
+function updateVote($sId, $pdo, $postId,$voteValue) {
+
+  $updateQ = "UPDATE uservotes SET vote_value = :vote_value WHERE user_id = :user_id AND post_id = :post_id";
+  $update = $pdo->prepare($updateQ);
+  $update->bindParam(':vote_value', $voteValue, PDO::PARAM_INT);
+  $update->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $update->bindParam(':user_id', $sId, PDO::PARAM_INT);
+
+  if (!$update) {
+    die(var_dump($pdo->errorInfo()));
+  }
+
+  $update->execute();
+//   $result = $update->fetchAll(PDO::FETCH_ASSOC);
+// return json_encode($result);
+
 }
 
 
