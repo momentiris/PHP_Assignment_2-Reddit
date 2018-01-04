@@ -62,8 +62,6 @@ function getProfile($pdo) {
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
 
-
-
   array_push($userProfile['userinfo'], $result[0]);
   array_push($userProfile['posts'], $allPosts);
   return $userProfile;
