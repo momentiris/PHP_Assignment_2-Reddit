@@ -26,9 +26,25 @@ const voteFunc = (e) => {
       body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
     .then(response => {
-      console.log(response.json());
 
     })
+
+  fetch(voteApi, {
+      method: "POST",
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      credentials: "include",
+      body:`post=true&postId=${e.target.value}}`
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(newTotal => {
+      e.target.parentNode.querySelector('.votes').innerHTML =
+      newTotal;
+
+    })
+
+
 }
 
 const upvote = (upvote) => {
@@ -50,7 +66,7 @@ fetch(`${api}/?page=${page}`)
       upvoteBtn.setAttribute("value", `${posts.id}`);
       downvoteBtn.setAttribute("value", `${posts.id}`);
       let postElement =
-      `<div class="">
+      `<div class="countMe">
         <div class="postCont">
           <div class="contentCont">
             <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
@@ -61,7 +77,7 @@ fetch(`${api}/?page=${page}`)
           </div>
           <div class="voting">
           ${upvoteBtn.outerHTML}
-          <small>${posts.votes}</small>
+          <small class="votes">${posts.votes}</small>
           ${downvoteBtn.outerHTML}
           </div>
         </div>
@@ -80,7 +96,7 @@ getPage(pageNum);
 
 //eventlistener for detecting if user scrolled to bottom. Only runs getPage func if current amount of posts generated in dom is less than total amount of posts in DB.
 window.addEventListener('scroll', function() {
-    let currentAmountOfPosts = postContainer.querySelectorAll('.card').length;
+    let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts){
       console.log(currentAmountOfPosts, totalPosts);
       pageNum++;

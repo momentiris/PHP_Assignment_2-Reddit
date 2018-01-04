@@ -57,9 +57,42 @@ function getProfile($pdo) {
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
   return $result;
 }
+//checks if user has voted. If voted checks value of vote to vote_value in db. if not voted it inserts new vote.
+function checkVote($pdo, $sId) {
+  $voteValue = $_POST['dir'];
+  $postId = $_POST['postId'];
+  $checkVote =
+  "SELECT vote_value
+  FROM uservotes WHERE post_id = :post_id
+  AND user_id = :user_id";
+
+  $statement = $pdo->prepare($checkVote);
+  $statement->bindParam('user_id', $sId);
+  $statement->bindParam('post_id', $postId);
+  $statement->execute();
+  $resultCheck = $statement->fetchAll(PDO::FETCH_NUM);
+  if ($resultCheck) {
+    if ($resultCheck[0][0] == $voteValue) {
+      updateVote($sId,$pdo,$postId, 0);
+
+    } else {
+      updateVote($sId,$pdo,$postId,$voteValue);
+    }
+  } else {
+    insertVote($voteValue, $postId, $sId, $pdo);
+  }
+}
+
+function removeVote($sId, $voteValue, $pdo, $postId) {
+  $rmVoteQ = "DELETE * FROM uservotes WHERE user_id = :user_id AND post_id = :post_id";
+  $rmVote = $pdo->prepare($rmVoteQ);
+  $rmVote->bindParam(':post_id',$postId);
+  $rmVote->bindParam(':user_id',$sId);
+  $rmVote->execute();
+
+}
 
 function insertVote($voteValue, $postId, $sId, $pdo) {
-
   // Insert vote
   $vote = "INSERT INTO uservotes(user_id, post_id, vote_value) VALUES(:user_id, :post_id, :vote_value)";
   $statement = $pdo->prepare($vote);
@@ -86,13 +119,23 @@ function updateVote($sId, $pdo, $postId,$voteValue) {
   if (!$update) {
     die(var_dump($pdo->errorInfo()));
   }
-
   $update->execute();
-//   $result = $update->fetchAll(PDO::FETCH_ASSOC);
-// return json_encode($result);
+  echo json_encode('updated');
 
 }
 
+function newTotalVoteValue($pdo, $postId) {
 
+$newTotalValueQ = "SELECT sum(vote_value) as newtotal FROM uservotes WHERE post_id = :post_id";
+$newTotalValue = $pdo->prepare($newTotalValueQ);
+$newTotalValue->bindParam(':post_id', $postId, PDO::PARAM_INT);
+$newTotalValue->execute();
+
+if (!$newTotalValue) {
+  die(var_dump($pdo->errorInfo()));
+}
+$result = $newTotalValue->fetch(PDO::FETCH_NUM);
+echo json_encode($result);
+}
 
 ?>
