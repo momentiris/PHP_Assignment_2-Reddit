@@ -3,7 +3,7 @@ require 'views/header.php';
  ?>
 
 
-
+<div class="container py-2">
 <article>
     <h1>Registration</h1>
 
@@ -28,12 +28,13 @@ require 'views/header.php';
 
         <div class="form-group">
             <label for="password">Repeat password</label>
-            <input class="form-control" type="password" name="passwordRep" required>
-            <small class="form-text text-muted">Please repeat your password (passphrase).</small>
+            <input class="form-control" type="password" name="passwordRep" required placeholder="Please repeat your password">
+
         </div><!-- /form-group -->
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </article>
+</div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

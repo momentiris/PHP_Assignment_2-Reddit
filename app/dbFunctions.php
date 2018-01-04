@@ -46,16 +46,27 @@ function login($pdo, $username, $passwordInput) {
 
 function getProfile($pdo) {
   $sId = (int)$_SESSION['user']['id'];
-  $countPosts = $pdo->prepare("SELECT COUNT('author_id') FROM posts WHERE author_id = $sId");
+  //I fill the $userProfile array with userinfo and all posts etc from the user in order to get a clear look of all the content and to easily print it on the profile page.
+  $userProfile = [
+    'userinfo' => [],
+    'posts'    => [],
+    'comments' => [],
+  ];
+
+  $countPosts = $pdo->prepare("SELECT posts.title, posts.content FROM posts WHERE author_id = $sId");
   $countPosts ->execute();
-  $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
-  var_dump($totalAmountOfPosts);
+  $allPosts = $countPosts->fetchAll(PDO::FETCH_ASSOC);
   // $user = $pdo->prepare('SELECT posts.title, posts.content, posts.time, posts.author_id, users.username, users.email, users.userdate FROM posts LEFT JOIN users ON posts.author_id = users.id WHERE posts.author_id = :id');
   $user = $pdo->prepare('SELECT users.username, users.email, users.userdate FROM users WHERE id = :id LIMIT 1');
   $user->bindParam(':id', $sId, PDO::PARAM_INT);
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
-  return $result;
+
+
+
+  array_push($userProfile['userinfo'], $result[0]);
+  array_push($userProfile['posts'], $allPosts);
+  return $userProfile;
 }
 //checks if user has voted. If voted checks value of vote to vote_value in db. if not voted it inserts new vote.
 function checkVote($pdo, $sId) {

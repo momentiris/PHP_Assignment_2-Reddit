@@ -41,9 +41,7 @@ const voteFunc = (e) => {
     .then(newTotal => {
       e.target.parentNode.querySelector('.votes').innerHTML =
       newTotal;
-
     })
-
 
 }
 
