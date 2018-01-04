@@ -1,0 +1,30 @@
+.profileBox {
+  width: 100vw;
+  border: 1px solid black;
+  height: 100vh;
+  padding: 2rem;
+
+}
+.innerUser {
+  display: flex;
+  flex-flow: row wrap;
+
+}
+.usernameheader {
+padding-bottom: 1rem;
+}
+.userinfo {
+
+  height: 60%;
+
+  width: 70%;
+
+
+}
+.infoUl {
+padding: 0;
+}
+.infodisplay {
+  text-decoration:underline;
+
+}
