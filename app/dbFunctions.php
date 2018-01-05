@@ -53,7 +53,7 @@ function getProfile($pdo) {
     'comments' => [],
   ];
 
-  $countPosts = $pdo->prepare("SELECT posts.title, posts.content FROM posts WHERE author_id = $sId");
+  $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time FROM posts WHERE author_id = $sId");
   $countPosts ->execute();
   $allPosts = $countPosts->fetchAll(PDO::FETCH_ASSOC);
   // $user = $pdo->prepare('SELECT posts.title, posts.content, posts.time, posts.author_id, users.username, users.email, users.userdate FROM posts LEFT JOIN users ON posts.author_id = users.id WHERE posts.author_id = :id');

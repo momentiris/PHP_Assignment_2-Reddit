@@ -2,7 +2,7 @@
 require __DIR__.'/views/header.php';
 
 $sId = $_SESSION['user']['id'];
-$profilePic = '';
+$placeholder = 'placeholder.png';
 $getProfile = getProfile($pdo);
 
 $checkAvatarQ = "SELECT avatar FROM users WHERE id = :id";
@@ -13,11 +13,10 @@ $result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
 
 if ($result) {
   $profilePic = "/assets/avatars/" . $result['avatar'];
-} else {
-  $profilePic = "assets/avatars/placeholder.png";
+} elseif (!$result){
+  $profilePic = "/assets/avatars/" . $placeholder;
 }
 foreach ($getProfile['userinfo'] as $info) :?>
-<?php foreach ($getProfile['posts'] as $post): ?>
 
 
 <div class="profileBox">
@@ -28,31 +27,44 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <ul class="infoUl">
         <p>Email: <?php echo $info['email']; ?> </p>
         <p>Member since: <?php echo $info['userdate']; ?></p>
-      <?php endforeach; ?>
-
       </ul>
     </div>
     <div class="avatarBox">
       <img src="<?php echo $profilePic; ?>" alt="">
+      <?php if (isset($_GET['editavatar'])) : ?>
+        <a href="?">Edit</a> <?php $_GET; ?>
+      <?php else : ?>
+        <a href="?editavatar">Edit</a>
+      <?php endif; ?>
+      <?php if (isset($_GET['editavatar'])) : ?>
+        <form action="app/auth/avatar.php" method="post" enctype="multipart/form-data">
+          <div class="form-group uploadavatar">
+            <label class="small" for="title">Please choose an image.</label><br>
+            <input class="small" name="avatar" type="file" required>
+            <button type="submit" class="small">Upload</button>
+          </div>
+        </form>
+      <?php endif; ?>
     </div>
   </div>
 
-  <form action="app/auth/avatar.php" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-          <label class="small" for="title">Please choose an image.</label><br>
-          <input class="small" name="avatar" type="file" required>
-      </div>
-      <button type="submit" class="small">Upload</button>
-  </form>
+    <a href="editprofile.php">Edit Profile</a>
 
-  <a href="editprofile.php">Edit Profile</a>
+  <div class="posts">
+    <h5>Posts</h5>
+    <div class="countMe">
+      <?php foreach ($getProfile['posts'][0] as $post): ?>
+        <div class="postCont">
+          <div class="contentCont">
+            <a href="<?php echo $post['title']; ?>"><h5 class="card-title title"><?php echo $post['title']; ?></h5></a>
+            <p class="small content"><?php echo $post['content']; ?></p>
+            <p class="small time">Submitted by <a href="?user"><?php echo $info['username']; ?></a> on <?php echo $post['time']; ?></p>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
 
-<div class="posts">
-<?php echo $post; ?>
-
-<?php endforeach; ?>
-</div>
 
 
 <?php require __DIR__.'/views/footer.php'; ?>
