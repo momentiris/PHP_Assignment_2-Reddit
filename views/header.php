@@ -21,32 +21,3 @@ require __DIR__.'/../app/autoload.php';
 </head>
 <body>
   <?php require __DIR__.'/navigation.php'; ?>
-
-  <div class="container bg-dark navbar-dark py-2 bg-light navbar-expand-md bg-faded justify-content-center">
-    <ul class="nav navbar-nav ml-auto w-100">
-      <li class="nav-item">
-        <a class="nav-link " href="./profile.php">Cats</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Dogs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Lizards</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Baking</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Music</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Code</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Blabla</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./profile.php">Cars</a>
-      </li>
-    </ul>
-  </div>

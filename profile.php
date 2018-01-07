@@ -11,13 +11,14 @@ $checkAvatar->bindParam(':id', $sId, PDO::PARAM_INT);
 $checkAvatar->execute();
 $result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
 
-if ($result) {
+if ($result['avatar']) {
   $profilePic = "/assets/avatars/" . $result['avatar'];
-} elseif (!$result){
+} else {
   $profilePic = "/assets/avatars/" . $placeholder;
 }
-foreach ($getProfile['userinfo'] as $info) :?>
 
+
+foreach ($getProfile['userinfo'] as $info) :?>
 
 <div class="profileBox">
   <div class="innerUser">

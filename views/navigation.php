@@ -50,3 +50,32 @@
         </ul>
     </div>
 </nav>
+
+<div class="container navbar-expand border">
+  <ul class="nav navbar-nav ml-auto w-100">
+    <li class="nav-item small">
+      <a class="nav-link " href="./profile.php">Cats</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Dogs</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Lizards</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Baking</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Music</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Code</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Blabla</a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link" href="./profile.php">Cars</a>
+    </li>
+  </ul>
+</div>
