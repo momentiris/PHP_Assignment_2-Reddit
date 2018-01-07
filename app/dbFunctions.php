@@ -118,7 +118,6 @@ function insertVote($voteValue, $postId, $sId, $pdo) {
 }
 
 function updateVote($sId, $pdo, $postId,$voteValue) {
-
   $updateQ = "UPDATE uservotes SET vote_value = :vote_value WHERE user_id = :user_id AND post_id = :post_id";
   $update = $pdo->prepare($updateQ);
   $update->bindParam(':vote_value', $voteValue, PDO::PARAM_INT);
@@ -130,21 +129,39 @@ function updateVote($sId, $pdo, $postId,$voteValue) {
   }
   $update->execute();
   echo json_encode('updated');
-
 }
 
 function newTotalVoteValue($pdo, $postId) {
+  $newTotalValueQ = "SELECT sum(vote_value) as newtotal FROM uservotes WHERE post_id = :post_id";
+  $newTotalValue = $pdo->prepare($newTotalValueQ);
+  $newTotalValue->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $newTotalValue->execute();
 
-$newTotalValueQ = "SELECT sum(vote_value) as newtotal FROM uservotes WHERE post_id = :post_id";
-$newTotalValue = $pdo->prepare($newTotalValueQ);
-$newTotalValue->bindParam(':post_id', $postId, PDO::PARAM_INT);
-$newTotalValue->execute();
-
-if (!$newTotalValue) {
-  die(var_dump($pdo->errorInfo()));
+  if (!$newTotalValue) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  $result = $newTotalValue->fetch(PDO::FETCH_NUM);
+  echo json_encode($result);
 }
-$result = $newTotalValue->fetch(PDO::FETCH_NUM);
-echo json_encode($result);
+
+function checkAvatar($pdo,$sId) {
+  $checkAvatarQ = "SELECT avatar FROM users WHERE id = :id";
+  $checkAvatar = $pdo->prepare($checkAvatarQ);
+  $checkAvatar->bindParam(':id', $sId, PDO::PARAM_INT);
+  $checkAvatar->execute();
+  $result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
+
+  if (!$checkAvatar) {
+    die(var_dump($pdo->errorInfo()));
+  }
+
+  if ($result['avatar']) {
+    return true;
+  }
+  else {
+    return false;
+  }
+
 }
 
 ?>

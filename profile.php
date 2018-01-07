@@ -5,17 +5,13 @@ $sId = $_SESSION['user']['id'];
 $placeholder = 'placeholder.png';
 $getProfile = getProfile($pdo);
 
-$checkAvatarQ = "SELECT avatar FROM users WHERE id = :id";
-$checkAvatar = $pdo->prepare($checkAvatarQ);
-$checkAvatar->bindParam(':id', $sId, PDO::PARAM_INT);
-$checkAvatar->execute();
-$result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
 
-if ($result['avatar']) {
-  $profilePic = "/assets/avatars/" . $result['avatar'];
-} else {
-  $profilePic = "/assets/avatars/" . $placeholder;
-}
+var_dump(checkAvatar($pdo, $sId));
+// if ($checkAv) {
+//   $profilePic = "/assets/avatars/" . $checkAv['avatar'];
+// } else {
+//   $profilePic = "/assets/avatars/" . $placeholder;
+// }
 
 
 foreach ($getProfile['userinfo'] as $info) :?>
