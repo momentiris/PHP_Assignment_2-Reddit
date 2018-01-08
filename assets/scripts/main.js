@@ -70,7 +70,7 @@ fetch(`${api}/?page=${page}`)
             <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
             <p class="small content">${posts.content}</p>
 
-            <p class="small time">Submitted by <a href="/profile.php?user=${posts.username}">${posts.username}</a> on ${posts.time}</p>
+            <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
 
           </div>
           <div class="voting">

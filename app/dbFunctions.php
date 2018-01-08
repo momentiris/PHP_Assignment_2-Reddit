@@ -44,8 +44,8 @@ function login($pdo, $username, $passwordInput) {
      }
 }
 
-function getProfile($pdo) {
-  $sId = (int)$_SESSION['user']['id'];
+function getProfile($pdo, $userId) {
+
   //I fill the $userProfile array with userinfo and all posts etc from the user in order to get a clear look of all the content and to easily print it on the profile page.
   $userProfile = [
     'userinfo' => [],
@@ -53,12 +53,13 @@ function getProfile($pdo) {
     'comments' => [],
   ];
 
-  $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time FROM posts WHERE author_id = $sId");
+  $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time FROM posts WHERE author_id = :id");
+  $countPosts->bindParam(':id', $userId);
   $countPosts ->execute();
+
   $allPosts = $countPosts->fetchAll(PDO::FETCH_ASSOC);
-  // $user = $pdo->prepare('SELECT posts.title, posts.content, posts.time, posts.author_id, users.username, users.email, users.userdate FROM posts LEFT JOIN users ON posts.author_id = users.id WHERE posts.author_id = :id');
   $user = $pdo->prepare('SELECT users.username, users.email, users.userdate FROM users WHERE id = :id LIMIT 1');
-  $user->bindParam(':id', $sId, PDO::PARAM_INT);
+  $user->bindParam(':id', $userId, PDO::PARAM_INT);
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
 
@@ -144,10 +145,10 @@ function newTotalVoteValue($pdo, $postId) {
   echo json_encode($result);
 }
 
-function checkAvatar($pdo,$sId) {
+function checkAvatar($pdo,$userId) {
   $checkAvatarQ = "SELECT avatar FROM users WHERE id = :id";
   $checkAvatar = $pdo->prepare($checkAvatarQ);
-  $checkAvatar->bindParam(':id', $sId, PDO::PARAM_INT);
+  $checkAvatar->bindParam(':id', $userId, PDO::PARAM_INT);
   $checkAvatar->execute();
   $result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
 
@@ -155,12 +156,7 @@ function checkAvatar($pdo,$sId) {
     die(var_dump($pdo->errorInfo()));
   }
 
-  if ($result['avatar']) {
-    return true;
-  }
-  else {
-    return false;
-  }
+return $result;
 
 }
 

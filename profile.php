@@ -2,17 +2,26 @@
 require __DIR__.'/views/header.php';
 
 $sId = $_SESSION['user']['id'];
+
 $placeholder = 'placeholder.png';
-$getProfile = getProfile($pdo);
+
+if (isset($_GET['user'])) {
+  $userId = $_GET['user'];
+
+} else {
+  $userId = $_SESSION['user']['id'];
+}
+
+$checkAvatar = checkAvatar($pdo, $userId);
 
 
-var_dump(checkAvatar($pdo, $sId));
-// if ($checkAv) {
-//   $profilePic = "/assets/avatars/" . $checkAv['avatar'];
-// } else {
-//   $profilePic = "/assets/avatars/" . $placeholder;
-// }
+if ($checkAvatar['avatar']) {
+  $profilePic = "/assets/avatars/" . $checkAvatar['avatar'];
+} else {
+  $profilePic = "/assets/avatars/" . $placeholder;
+}
 
+$getProfile = getProfile($pdo, $userId);
 
 foreach ($getProfile['userinfo'] as $info) :?>
 
