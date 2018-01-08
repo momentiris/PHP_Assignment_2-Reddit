@@ -4,12 +4,12 @@ require 'views/header.php';
 
 
 <div class="container py-2">
-<article>
+<article class="hidden">
     <h1>Registration</h1>
 
-    <p style="color: red; margin: 0; position: absolute; right: 0;"class="deniedUsername small"></p>
     <form action="app/auth/registration.php" method="post">
         <div class="form-group">
+          <p class="deniedUsername small"></p>
             <label for="username">Username</label>
             <input id="usernameInput" class="form-control" placeholder="Please choose a username." type="text" name="username" " required>
         </div><!-- /form-group -->

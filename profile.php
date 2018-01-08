@@ -38,7 +38,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
     <div class="avatarBox">
       <img src="<?php echo $profilePic; ?>" alt="">
       <?php if (isset($_GET['editavatar'])) : ?>
-        <a href="?">Edit</a> <?php $_GET; ?>
+        <a href="?">Edit</a> 
       <?php else : ?>
         <a href="?editavatar">Edit</a>
       <?php endif; ?>

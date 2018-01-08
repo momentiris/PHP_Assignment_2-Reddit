@@ -3,6 +3,7 @@ html {
 }
 * {
   font-family: 'Roboto Mono';
+
 }
 p {
   font-family: 'Roboto Mono';
@@ -12,14 +13,9 @@ p {
   min-width: 100vw;
 }
 
-
-
 .addeCard {
   background-color: black;
-
-
 }
-
 .addeBody {
   background-color: ;
 }
@@ -39,10 +35,71 @@ flex-flow: column nowrap;
 justify-content: space-between;
 align-items: center;
 
-
-
 }
 
 .contentCont {
   width: 90%;
+}
+
+.contentArea {
+	width: 70%;
+	height: 120px;
+	padding: 5px;
+}
+
+.inputArea {
+  border-radius: 0;
+  width: 70%;
+  max-width: 500px;
+  padding: 5;
+  font-size: 13px;
+}
+
+.newpost {
+transition: all .5s ease;
+cursor: pointer;
+
+}
+
+.newpost:hover {
+  color: #1B57AD;
+}
+
+.form-group {
+  margin: 0;
+  position: relative;
+}
+
+.post-show {
+
+}
+
+.postBox {
+  transition: all .3s ease;
+  position: relative;
+}
+
+
+.hidden {
+height: 0;
+opacity: 0;
+transform: translateY(-30px);
+transition: all .3s ease;
+visibility: hidden;
+
+}
+
+.showing {
+  transition: all .3s ease;
+height: 300px;
+visibility: visible;
+opacity: 1;  
+}
+.deniedUsername {
+  color: red;
+  margin: 0;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+
 }
