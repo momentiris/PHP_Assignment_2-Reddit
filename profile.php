@@ -58,15 +58,15 @@ foreach ($getProfile['userinfo'] as $info) :?>
         <form class="" action="app/auth/editprofile.php" method="post">
             <div class="form-group">
                 <label for="title" class="small">Username</label>
-                <input id="usernameInput" class="form-control inputArea" type="text" name="username">
+                <input id="usernameInput" class="form-control inputArea" type="text" name="username" value="<?php echo $info['username'];?>">
             </div><!-- /form-group -->
             <div class="form-group">
                 <label for="content" class="small">Email</label>
-                <input class="form-control inputArea"  type="text" name="email">
+                <input class="form-control inputArea"  type="text" name="email" value="<?php echo $info['email'];?>">
             </div><!-- /form-group -->
             <div class="form-group">
                 <label for="content" class="small">Biography</label>
-                <textarea class="form-control contentArea inputArea"  type="text" name="biography"></textarea>
+                <textarea class="form-control contentArea inputArea"  type="text" name="biography"><?php echo $info['biography'];?></textarea>
             </div><!-- /form-group -->
 
             <button type="submit" class="">Post</button>
