@@ -20,8 +20,7 @@ $getProfile = getProfile($pdo, $userId);
 foreach ($getProfile['userinfo'] as $info) :?>
 
 <div class="profileBox">
-  <div class="innerUser">
-
+  <div class="innerUser"
     <div class="userinfo">
       <h2 class="usernameheader"><?php echo $info['username']; ?></h2>
       <ul class="infoUl">
@@ -47,12 +46,9 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <?php endif; ?>
     </div>
   </div>
-
     <p class="editprofile">Edit profile</p>
-
-
       <article class="editForm hidden">
-        <form class="" action="app/auth/newpost.php" method="post">
+        <form class="" action="app/auth/editprofile.php" method="post">
             <div class="form-group">
                 <label for="title" class="small">Title</label>
                 <input id="usernameInput" class="form-control inputArea" type="text" name="title" required>
@@ -68,8 +64,6 @@ foreach ($getProfile['userinfo'] as $info) :?>
             <button type="submit" class="">Post</button>
         </form>
     </article>
-
-
   <div class="posts">
     <h5>Posts: <?php echo count($getProfile['posts'][0]) ?></h5>
     <div class="countMe">
