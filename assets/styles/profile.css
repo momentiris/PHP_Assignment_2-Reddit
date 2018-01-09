@@ -5,7 +5,7 @@
 .innerUser {
   display: flex;
   flex-flow: row wrap;
-
+  align-items: center;
 
 }
 .usernameheader {
@@ -26,6 +26,7 @@ padding: 0;
   display: flex;
   flex-flow: column nowrap;
   padding-top: 2rem;
+  transition: all .3s ease;
 }
 
 .uploadavatar {
@@ -34,4 +35,19 @@ position: absolute;
 
 .avatarBox {
   padding-top: 2rem;
+}
+
+.editprofile {
+  width: 150px;
+  user-select: none;
+  color: #007bff;
+}
+
+.editForm {
+  transition: all .2s ease;
+}
+
+.editprofile:hover {
+text-decoration: underline;
+
 }
