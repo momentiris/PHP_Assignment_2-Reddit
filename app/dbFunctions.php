@@ -45,7 +45,6 @@ function login($pdo, $username, $passwordInput) {
 }
 
 function getProfile($pdo, $userId) {
-
   //I fill the $userProfile array with userinfo and all posts etc from the user in order to get a clear look of all the content and to easily print it on the profile page.
   $userProfile = [
     'userinfo' => [],
@@ -84,7 +83,6 @@ function checkVote($pdo, $sId) {
   if ($resultCheck) {
     if ($resultCheck[0][0] == $voteValue) {
       updateVote($sId,$pdo,$postId, 0);
-
     } else {
       updateVote($sId,$pdo,$postId,$voteValue);
     }
@@ -99,7 +97,6 @@ function removeVote($sId, $voteValue, $pdo, $postId) {
   $rmVote->bindParam(':post_id',$postId);
   $rmVote->bindParam(':user_id',$sId);
   $rmVote->execute();
-
 }
 
 function insertVote($voteValue, $postId, $sId, $pdo) {

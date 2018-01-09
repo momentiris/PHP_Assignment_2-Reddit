@@ -12,6 +12,43 @@ p {
 .container {
   min-width: 100vw;
 }
+.fleshbacklogo {
+  font-size: 24px;
+}
+.navbox {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.addenav  {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  border-bottom: 1px dashed black;
+  font-size: 14px;
+
+}
+.loggedIn {
+  margin: 0;
+  padding-top: .5rem;
+}
+
+.navcontainerFixed {
+  padding: 0 1rem 0 1rem !important;
+  margin-top: .5rem;
+}
+
+.addeUl {
+  display: flex;
+  flex-flow: row nowrap;
+
+}
+
+.addeLi {
+    margin: 0 1rem 0 1rem;
+}
 
 .addeCard {
   background-color: black;
@@ -45,7 +82,7 @@ align-items: center;
 	width: 70%;
 	height: 120px;
 	padding: 5px;
-  resize: none;  
+  resize: none;
 }
 
 .inputArea {
@@ -57,7 +94,7 @@ align-items: center;
 }
 
 .newpost {
-transition: all .5s ease;
+
 cursor: pointer;
 width: 200px;
 
@@ -65,7 +102,7 @@ width: 200px;
 }
 
 .newpost:hover {
-  color: #1B57AD;
+  color: #007bff;
 }
 .postboxcontainer {
 

@@ -2,19 +2,13 @@
 require __DIR__.'/views/header.php';
 
 $sId = $_SESSION['user']['id'];
-
 $placeholder = 'placeholder.png';
-
 if (isset($_GET['user'])) {
   $userId = $_GET['user'];
-
 } else {
   $userId = $_SESSION['user']['id'];
 }
-
 $checkAvatar = checkAvatar($pdo, $userId);
-
-
 if ($checkAvatar['avatar']) {
   $profilePic = "/assets/avatars/" . $checkAvatar['avatar'];
 } else {
@@ -36,9 +30,9 @@ foreach ($getProfile['userinfo'] as $info) :?>
       </ul>
     </div>
     <div class="avatarBox">
-      <img src="<?php echo $profilePic; ?>" alt="">
+      <img class="avatarimg" src="<?php echo $profilePic; ?>" alt="">
       <?php if (isset($_GET['editavatar'])) : ?>
-        <a href="?">Edit</a> 
+        <a href="?">Edit</a>
       <?php else : ?>
         <a href="?editavatar">Edit</a>
       <?php endif; ?>
@@ -57,7 +51,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
     <a href="editprofile.php">Edit Profile</a>
 
   <div class="posts">
-    <h5>Posts</h5>
+    <h5>Posts: <?php echo count($getProfile['posts'][0]) ?></h5>
     <div class="countMe">
       <?php foreach ($getProfile['posts'][0] as $post): ?>
         <div class="postCont">
