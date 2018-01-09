@@ -20,12 +20,16 @@ $getProfile = getProfile($pdo, $userId);
 foreach ($getProfile['userinfo'] as $info) :?>
 
 <div class="profileBox">
-  <div class="innerUser"
+  <div class="innerUser">
     <div class="userinfo">
       <h2 class="usernameheader"><?php echo $info['username']; ?></h2>
       <ul class="infoUl">
-        <p>Email: <?php echo $info['email']; ?> </p>
-        <p>Member since: <?php echo $info['userdate']; ?></p>
+        <label class="bioInfo" for="biography">Biography:</label>
+        <p class="small"><?php echo $info['biography']; ?> </p>
+        <label class="bioInfo" for="email">Email:</label>
+        <p class="small"><?php echo $info['email']; ?> </p>
+        <label class="bioInfo" for="data">Member since: </label>
+        <p class="small"><?php echo $info['userdate']; ?></p>
       </ul>
     </div>
     <div class="avatarBox">
@@ -46,24 +50,42 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <?php endif; ?>
     </div>
   </div>
-    <p class="editprofile">Edit profile</p>
+    <div class="edits">
+      <p class="editprofile small">Edit profile</p>
+      <p class="editpassword editprofile small">Edit password</p>
+    </div>
       <article class="editForm hidden">
         <form class="" action="app/auth/editprofile.php" method="post">
             <div class="form-group">
-                <label for="title" class="small">Title</label>
-                <input id="usernameInput" class="form-control inputArea" type="text" name="title" required>
+                <label for="title" class="small">Username</label>
+                <input id="usernameInput" class="form-control inputArea" type="text" name="username">
             </div><!-- /form-group -->
             <div class="form-group">
-                <label for="url" class="small">Url</label>
-                <input class="form-control inputArea" type="url" name="url">
+                <label for="content" class="small">Email</label>
+                <input class="form-control inputArea"  type="text" name="email">
             </div><!-- /form-group -->
             <div class="form-group">
-                <label for="content" class="small">Content</label>
-                <textarea class="form-control contentArea inputArea"  type="text" name="content" required></textarea>
+                <label for="content" class="small">Biography</label>
+                <textarea class="form-control contentArea inputArea"  type="text" name="biography"></textarea>
             </div><!-- /form-group -->
+
             <button type="submit" class="">Post</button>
         </form>
     </article>
+    <article class=" editPwForm hidden">
+      <form class="" action="app/auth/editprofile.php" method="post">
+        <div class="form-group">
+            <label for="password" class="small">Old password</label>
+            <input class="form-control inputArea" type="password" name="oldpassword">
+            <label for="password" class="small">New password</label>
+            <input class="form-control inputArea" type="password" name="newpassword">
+            <label for="password" class="small">Repeat new password</label>
+            <input class="form-control inputArea" type="password" name="newpassword">
+        </div><!-- /form-group -->
+      </form>
+    </article>
+
+
   <div class="posts">
     <h5>Posts: <?php echo count($getProfile['posts'][0]) ?></h5>
     <div class="countMe">

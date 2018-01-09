@@ -51,13 +51,12 @@ function getProfile($pdo, $userId) {
     'posts'    => [],
     'comments' => [],
   ];
-
   $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time FROM posts WHERE author_id = :id");
   $countPosts->bindParam(':id', $userId);
   $countPosts ->execute();
 
   $allPosts = $countPosts->fetchAll(PDO::FETCH_ASSOC);
-  $user = $pdo->prepare('SELECT users.username, users.email, users.userdate FROM users WHERE id = :id LIMIT 1');
+  $user = $pdo->prepare('SELECT users.username, users.email, users.biography, users.userdate FROM users WHERE id = :id LIMIT 1');
   $user->bindParam(':id', $userId, PDO::PARAM_INT);
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
