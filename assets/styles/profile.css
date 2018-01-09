@@ -5,6 +5,8 @@
 .innerUser {
   display: flex;
   flex-flow: row wrap;
+
+  padding: .5rem;
 }
 .usernameheader {
 padding-bottom: 1rem;

@@ -1,8 +1,7 @@
 <?php require __DIR__.'/views/header.php';
 
   ?>
-  <div class="container py-3" style="margin: 0;">
-
+  <div class="postboxcontainer container py-3" style="margin: 0;">
 
     <h3 class="newpost">New post</h3>
     <article class="">
@@ -19,7 +18,7 @@
               <label for="content" class="small">Content</label>
               <textarea class="form-control contentArea inputArea"  type="text" name="content" required></textarea>
           </div><!-- /form-group -->
-          <button type="submit" class="btn btn-primary">Post</button>
+          <button type="submit" class="">Post</button>
       </form>
   </article>
 </div>

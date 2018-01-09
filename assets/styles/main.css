@@ -45,6 +45,7 @@ align-items: center;
 	width: 70%;
 	height: 120px;
 	padding: 5px;
+  resize: none;  
 }
 
 .inputArea {
@@ -58,11 +59,16 @@ align-items: center;
 .newpost {
 transition: all .5s ease;
 cursor: pointer;
+width: 200px;
+
 
 }
 
 .newpost:hover {
   color: #1B57AD;
+}
+.postboxcontainer {
+
 }
 
 .form-group {
@@ -77,6 +83,7 @@ cursor: pointer;
 .postBox {
   transition: all .3s ease;
   position: relative;
+  padding-top: 0!important;
 }
 
 
@@ -86,14 +93,14 @@ opacity: 0;
 transform: translateY(-30px);
 transition: all .3s ease;
 visibility: hidden;
-
+  padding-bottom: 0 !important;
 }
 
 .showing {
   transition: all .3s ease;
 height: 300px;
 visibility: visible;
-opacity: 1;  
+opacity: 1;
 }
 .deniedUsername {
   color: red;
