@@ -9,6 +9,15 @@ if (isset($_POST['username'])) {
   editProfile($pdo, $email, $biography, $username, $sId);
   redirect('/../../profile.php');
 }
-if (isset($_POST['password'])) {
-
+if (isset($_POST['oldpassword'])) {
+  $sId = $_SESSION['user']['id'];
+  $inputOld = $_POST['oldpassword'];
+  $newPw = $_POST['newpassword'];
+  $editPw = editPassword($pdo, $inputOld, $newPw, $sId);
+  if ($editPw) {
+    redirect('/../../login.php');
+    # code...
+  } else {
+    redirect('/../../profile.php');
+  }
 }

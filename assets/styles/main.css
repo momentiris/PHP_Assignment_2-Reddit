@@ -58,7 +58,7 @@ html {
 .postCont {
   display: flex;
   border: 1px dashed black;
-  margin: 10px 0 10px 0;
+  margin: 0px 0 10px 0;
   padding: 5px;
 
 }
@@ -114,10 +114,13 @@ width: 200px;
 .post-show {
 
 }
-
+.postForm {
+  margin-bottom: 2rem;
+}
 .postBox {
   transition: all .3s ease;
   position: relative;
+  padding-top: 0 !important;
 
 }
 
@@ -133,7 +136,7 @@ visibility: hidden;
 
 .showing {
   transition: all .3s ease;
-height: 300px;
+height: 350px;
 visibility: visible;
 opacity: 1;
 }

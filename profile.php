@@ -69,11 +69,11 @@ foreach ($getProfile['userinfo'] as $info) :?>
                 <textarea maxlength="240"class="form-control contentArea inputArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
             </div><!-- /form-group -->
 
-            <button type="submit" class="">Post</button>
+            <button type="submit" class="">Submit</button>
         </form>
     </article>
     <article class=" editPwForm hidden">
-      <form class="" action="app/auth/editprofile.php" method="post">
+      <form class="editPwForm" action="app/auth/editprofile.php" method="post">
         <div class="form-group">
             <label for="password" class="small">Old password</label>
             <input class="form-control inputArea" type="password" name="oldpassword">
@@ -82,6 +82,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
             <label for="password" class="small">Repeat new password</label>
             <input class="form-control inputArea" type="password" name="newpassword">
         </div><!-- /form-group -->
+        <button type="submit" class="">Submit</button>
       </form>
     </article>
 

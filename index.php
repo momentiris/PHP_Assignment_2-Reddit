@@ -5,7 +5,7 @@
 
     <h3 class="newpost">New post</h3>
     <article class="">
-      <form class="" action="app/auth/newpost.php" method="post">
+      <form class="postForm" action="app/auth/newpost.php" method="post">
           <div class="form-group">
               <label for="title" class="small">Title</label>
               <input id="usernameInput" class="form-control inputArea" type="text" name="title" required>

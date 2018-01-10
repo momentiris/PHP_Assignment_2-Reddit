@@ -20,7 +20,6 @@ function newUser($pdo, $username, $email, $password, $time) {
   $user->bindParam(':password', $password, PDO::PARAM_STR);
   $user->bindParam(':userdate', $time, PDO::PARAM_STR);
   $user->execute();
-  
 }
 
 //Login
@@ -75,6 +74,29 @@ function editProfile($pdo, $email, $biography, $username, $sId) {
   $editProfile->bindParam(':biography', $biography, PDO::PARAM_STR);
   $editProfile->bindParam(':session_id', $sId, PDO::PARAM_INT);
   $editProfile->execute();
+  $_SESSION['user']['name'] = $username;
+}
+
+function editPassword($pdo, $inputOld, $newPw, $sId) {
+  $checkPwQ = "SELECT password FROM users WHERE id = :id";
+  $checkPw = $pdo->prepare($checkPwQ);
+  $checkPw->bindParam(':id', $sId, PDO::PARAM_INT);
+  $checkPw->execute();
+  $currentPw = $checkPw->fetch(PDO::FETCH_ASSOC);
+  $currentPw = $currentPw['password'];
+
+  if (password_verify($inputOld, $currentPw)) {
+    $newPw = password_hash($newPw, PASSWORD_DEFAULT);
+    $updatePwQ = "UPDATE users SET password = :password WHERE id = :id";
+    $updatePw = $pdo->prepare($updatePwQ);
+    $updatePw->bindParam(':password', $newPw);
+    $updatePw->bindParam(':id', $sId);
+    $updatePw->execute();
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 //checks if user has voted. If voted checks value of vote to vote_value in db. if not voted it inserts new vote.
 function checkVote($pdo, $sId) {

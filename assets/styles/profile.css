@@ -33,7 +33,6 @@ padding: 0;
 .posts {
   display: flex;
   flex-flow: column nowrap;
-  padding-top: 2rem;
   transition: all .3s ease;
 }
 
@@ -48,10 +47,12 @@ position: absolute;
 
 .editForm {
   transition: all .2s ease;
+  margin-bottom: 1rem;
 }
 
 .editPwForm {
   transition: all .2s ease;
+  margin-bottom: 2rem;
 }
 
 .editprofile {
@@ -66,15 +67,18 @@ text-decoration: underline;
 
 .showing_edit {
   transition: all .3s ease;
-height: 275px;
+height: 315px;
 visibility: visible;
 opacity: 1;
-margin-bottom: 1rem;
+margin-bottom: 2rem;
 }
 
 .showing_edit_pw {
   transition: all .3s ease;
-  height: 175px;
+  height: 200px;
   visibility: visible;
   opacity: 1;
+}
+.form-group {
+  margin-bottom: 1rem;
 }
