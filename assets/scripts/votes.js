@@ -97,6 +97,8 @@ window.addEventListener('scroll', function() {
     let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts){
       console.log(currentAmountOfPosts, totalPosts);
+      // console.log('body offset height = '+document.body.offsetHeight);
+      // console.log('result= ',window.innerHeight + window.scrollY);
       pageNum++;
         getPage(pageNum);
   }

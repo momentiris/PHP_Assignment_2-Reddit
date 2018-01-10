@@ -8,6 +8,7 @@ html {
 
 .container {
   min-width: 100vw;
+
 }
 .fleshbacklogo {
   font-size: 24px;
@@ -117,7 +118,7 @@ width: 200px;
 .postBox {
   transition: all .3s ease;
   position: relative;
-  padding-top: 0!important;
+
 }
 
 

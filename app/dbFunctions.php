@@ -20,6 +20,7 @@ function newUser($pdo, $username, $email, $password, $time) {
   $user->bindParam(':password', $password, PDO::PARAM_STR);
   $user->bindParam(':userdate', $time, PDO::PARAM_STR);
   $user->execute();
+  
 }
 
 //Login
@@ -64,6 +65,16 @@ function getProfile($pdo, $userId) {
   array_push($userProfile['userinfo'], $result[0]);
   array_push($userProfile['posts'], $allPosts);
   return $userProfile;
+}
+
+function editProfile($pdo, $email, $biography, $username, $sId) {
+  $editQ = "UPDATE users SET username = :username, email = :email, biography = :biography WHERE id = :session_id";
+  $editProfile = $pdo->prepare($editQ);
+  $editProfile->bindParam(':username', $username, PDO::PARAM_STR);
+  $editProfile->bindParam(':email', $email, PDO::PARAM_STR);
+  $editProfile->bindParam(':biography', $biography, PDO::PARAM_STR);
+  $editProfile->bindParam(':session_id', $sId, PDO::PARAM_INT);
+  $editProfile->execute();
 }
 //checks if user has voted. If voted checks value of vote to vote_value in db. if not voted it inserts new vote.
 function checkVote($pdo, $sId) {
