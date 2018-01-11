@@ -4,7 +4,7 @@ require 'views/header.php';
 
 
 <div class="container py-2">
-<article class="hidden">
+<article class="">
     <h1>Registration</h1>
 
     <form action="app/auth/registration.php" method="post">

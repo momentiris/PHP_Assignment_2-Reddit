@@ -123,7 +123,12 @@ width: 200px;
   padding-top: 0 !important;
 
 }
-
+.time {
+  margin-bottom: 0;
+}
+.comment {
+  margin-bottom: 0;
+}
 
 .hidden {
 height: 0;

@@ -1,7 +1,10 @@
-
+let currentUser = 0;
+let editBtn = `<p class="edit"><a href="/editpost.php">Edit post</a></p>`;
+let editP = ``;
 let pageNum = 1;
 let totalPosts = 0;
 const api = "/../../pagination.php";
+const api2 = "/../../getsession.php";
 const voteApi = 'http://localhost:8888/app/auth/votes.php';
 const postContainer = document.querySelector('.postcontainer');
 let divElement = document.createElement('div');
@@ -44,13 +47,42 @@ const voteFunc = (e) => {
     })
 
 }
-
 const upvote = (upvote) => {
   upvote.addEventListener('click', voteFunc);
 }
 const downvote = (downvote) => {
   downvote.addEventListener('click', voteFunc);
 }
+
+const getVoted = (page) => {
+  fetch(api, {
+      method: "POST",
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      credentials: "include",
+
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(uservoted => {
+      console.log(uservoted);
+    })
+
+}
+
+
+fetch(api2, {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    credentials: "include",
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(session => {
+    currentUser = JSON.parse(session);
+    console.log(currentUser);
+  })
 
 
  const getPage = (page) => {
@@ -59,9 +91,14 @@ fetch(`${api}/?page=${page}`)
     return response.json();
   })
   .then(postsOnPage => {
-    console.log(postsOnPage.uservoted);
+    console.log(postsOnPage);
     totalPosts = JSON.parse(postsOnPage['total'][0]);
     for (posts of postsOnPage['posts'][0]) {
+      if (currentUser == posts.author_id) {
+        editP = editBtn;
+      } else {
+        editP = "";
+      }
       upvoteBtn.setAttribute("value", `${posts.id}`);
       downvoteBtn.setAttribute("value", `${posts.id}`);
       let postElement =
@@ -70,6 +107,8 @@ fetch(`${api}/?page=${page}`)
           <div class="contentCont">
             <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
             <p class="small content">${posts.content}</p>
+            <p class="small content">${editP}</p>
+            <p class=" comment"><a href="/comments.php">Comment</a></p>
             <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
           </div>
           <div class="voting">
@@ -79,15 +118,16 @@ fetch(`${api}/?page=${page}`)
           </div>
         </div>
       </div>`;
-          divElement.innerHTML += postElement;
-          postContainer.appendChild(divElement);
+
+      divElement.innerHTML += postElement;
+
+      postContainer.appendChild(divElement);
+
     }
-
-
-          const upvoteArr = document.querySelectorAll('.upvote');
-          const downvoteArr = document.querySelectorAll('.downvote');
-          Array.from(upvoteArr).forEach(upvote);
-          Array.from(downvoteArr).forEach(downvote);
+      const upvoteArr = document.querySelectorAll('.upvote');
+      const downvoteArr = document.querySelectorAll('.downvote');
+      Array.from(upvoteArr).forEach(upvote);
+      Array.from(downvoteArr).forEach(downvote);
 })
 }
 
@@ -100,5 +140,6 @@ window.addEventListener('scroll', function() {
       console.log(currentAmountOfPosts, totalPosts);
       pageNum++;
         getPage(pageNum);
+
   }
 });
