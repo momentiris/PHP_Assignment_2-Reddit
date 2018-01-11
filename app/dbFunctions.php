@@ -29,7 +29,7 @@ function login($pdo, $username, $passwordInput) {
   $user->execute();
   $user = $user->fetch(PDO::FETCH_ASSOC);
 
-  if ($user) {
+  if ($user){
       if (password_verify($passwordInput, $user['password'])) {
           $_SESSION['user'] = [
               'name'  => $user['username'],

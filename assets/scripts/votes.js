@@ -26,7 +26,7 @@ const voteFunc = (e) => {
       body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
     .then(response => {
-
+      console.log(response);
     })
 
   fetch(voteApi, {
@@ -59,6 +59,7 @@ fetch(`${api}/?page=${page}`)
     return response.json();
   })
   .then(postsOnPage => {
+    console.log(postsOnPage.uservoted);
     totalPosts = JSON.parse(postsOnPage['total'][0]);
     for (posts of postsOnPage['posts'][0]) {
       upvoteBtn.setAttribute("value", `${posts.id}`);
@@ -69,9 +70,7 @@ fetch(`${api}/?page=${page}`)
           <div class="contentCont">
             <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
             <p class="small content">${posts.content}</p>
-
             <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
-
           </div>
           <div class="voting">
           ${upvoteBtn.outerHTML}
@@ -82,7 +81,9 @@ fetch(`${api}/?page=${page}`)
       </div>`;
           divElement.innerHTML += postElement;
           postContainer.appendChild(divElement);
-    };
+    }
+
+
           const upvoteArr = document.querySelectorAll('.upvote');
           const downvoteArr = document.querySelectorAll('.downvote');
           Array.from(upvoteArr).forEach(upvote);
@@ -97,8 +98,6 @@ window.addEventListener('scroll', function() {
     let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts){
       console.log(currentAmountOfPosts, totalPosts);
-      // console.log('body offset height = '+document.body.offsetHeight);
-      // console.log('result= ',window.innerHeight + window.scrollY);
       pageNum++;
         getPage(pageNum);
   }

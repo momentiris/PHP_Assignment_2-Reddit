@@ -1,6 +1,6 @@
 <?php
-
 require __DIR__.'/app/autoload.php';
+
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $postsPerPage = 5;
@@ -16,20 +16,33 @@ $countVotes = $pdo->prepare("SELECT id, sum(uservotes.vote_value) as totalvalue 
 $countVotes ->execute();
 $totalAmountOfVotes = $countVotes->fetchAll(PDO::FETCH_ASSOC);
 
-
 $posts = $pdo->prepare("SELECT title, content, url, time, username, author_id, id, votes FROM posts LIMIT $start, $postsPerPage");
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);
 
+$minus = -1;
+$plus = +1;
+// $sIdTemp = $_SESSION['user']['id'];
+$checkUserVotesQ = "SELECT
+                    post_id, vote_value FROM
+                    uservotes WHERE
+                    user_id = :id AND vote_value = -1 OR user_id = :id AND vote_value = +1" ;
+$checkUserVotes = $pdo->prepare($checkUserVotesQ);
+$checkUserVotes->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+
+$checkUserVotes->execute();
+$result = $checkUserVotes->fetchAll(PDO::FETCH_ASSOC);
 
 $allArr = [
-'posts' => [],
-'total' => [],
+'posts'     => [],
+'total'     => [],
+'uservoted' => [],
 ];
 
 
 array_push($allArr['posts'], $answer);
 array_push($allArr['total'], $totalAmountOfPosts);
+array_push($allArr['uservoted'], $result);
 
 foreach ($allArr['posts'][0] as $key => $value) {
   foreach ($totalAmountOfVotes as $key2 => $value2) {
