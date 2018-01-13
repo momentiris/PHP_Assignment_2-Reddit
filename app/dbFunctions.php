@@ -114,22 +114,15 @@ function checkVote($pdo, $sId) {
   $resultCheck = $statement->fetchAll(PDO::FETCH_NUM);
   if ($resultCheck) {
     if ($resultCheck[0][0] == $voteValue) {
-      updateVote($sId,$pdo,$postId, 0);
+   return updateVote($sId,$pdo,$postId, 0);
     } else {
-      updateVote($sId,$pdo,$postId,$voteValue);
+    return updateVote($sId,$pdo,$postId,$voteValue);
     }
   } else {
-    insertVote($voteValue, $postId, $sId, $pdo);
+    return insertVote($voteValue, $postId, $sId, $pdo);
   }
 }
 
-function removeVote($sId, $voteValue, $pdo, $postId) {
-  $rmVoteQ = "DELETE * FROM uservotes WHERE user_id = :user_id AND post_id = :post_id";
-  $rmVote = $pdo->prepare($rmVoteQ);
-  $rmVote->bindParam(':post_id',$postId);
-  $rmVote->bindParam(':user_id',$sId);
-  $rmVote->execute();
-}
 
 function insertVote($voteValue, $postId, $sId, $pdo) {
   // Insert vote
@@ -144,7 +137,8 @@ function insertVote($voteValue, $postId, $sId, $pdo) {
   }
   $statement->execute();
   $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-  return $result;
+  return $voteValue;
+  // echo json_encode($voteValue);
 }
 
 function updateVote($sId, $pdo, $postId,$voteValue) {
@@ -158,7 +152,7 @@ function updateVote($sId, $pdo, $postId,$voteValue) {
     die(var_dump($pdo->errorInfo()));
   }
   $update->execute();
-  echo json_encode('updated');
+  return $voteValue;
 }
 
 function newTotalVoteValue($pdo, $postId) {
@@ -171,6 +165,7 @@ function newTotalVoteValue($pdo, $postId) {
     die(var_dump($pdo->errorInfo()));
   }
   $result = $newTotalValue->fetch(PDO::FETCH_NUM);
+
   echo json_encode($result);
 }
 

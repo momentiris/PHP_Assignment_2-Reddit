@@ -30,16 +30,28 @@ $posts = $pdo->prepare("SELECT title, content, url, time, username, author_id, i
 $posts->execute();
 $answer = $posts->fetchAll(PDO::FETCH_ASSOC);
 
+$sId = $_SESSION['user']['id'];
+$checkUserVotesQ = "SELECT
+                    post_id, vote_value FROM
+                    uservotes WHERE
+                    user_id = :user_id AND vote_value = -1 OR user_id = :user_id AND vote_value = +1";
+$checkUserVotes = $pdo->prepare($checkUserVotesQ);
+$checkUserVotes->bindParam(':user_id', $sId, PDO::PARAM_STR);
+$checkUserVotes->execute();
+$result = $checkUserVotes->fetchAll(PDO::FETCH_ASSOC);
+
 $allArr = [
 'posts'     => [],
 'total'     => [],
 'uservoted' => [],
+'session'   => [],
 
 ];
 
-array_push($allArr['uservoted'], json_encode($result));
+array_push($allArr['uservoted'], $result);
 array_push($allArr['posts'], $answer);
 array_push($allArr['total'], $totalAmountOfPosts);
+array_push($allArr['session'], $sId);
 
 foreach ($allArr['posts'][0] as $key => $value) {
   foreach ($totalAmountOfVotes as $key2 => $value2) {

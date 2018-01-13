@@ -1,10 +1,9 @@
 let currentUser = 0;
-let editBtn = `<p class="edit"><a href="/editpost.php">Edit post</a></p>`;
+
 let editP = ``;
 let pageNum = 1;
 let totalPosts = 0;
 const api = "/../../pagination.php";
-const api2 = "/../../getsession.php";
 const voteApi = 'http://localhost:8888/app/auth/votes.php';
 const postContainer = document.querySelector('.postcontainer');
 let divElement = document.createElement('div');
@@ -29,8 +28,26 @@ const voteFunc = (e) => {
       body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
     .then(response => {
-      console.log(response);
+      return response.json()
     })
+    .then(value => {
+      console.log(value);
+      switch (value) {
+        case 1:
+          e.target.classList.add('upvoted');
+          e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
+          break;
+        case -1:
+          e.target.classList.add('downvoted');
+          e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
+          break;
+        case 0:
+        e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
+        e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
+        default:
+      }
+    })
+
 
   fetch(voteApi, {
       method: "POST",
@@ -54,47 +71,19 @@ const downvote = (downvote) => {
   downvote.addEventListener('click', voteFunc);
 }
 
-const getVoted = (page) => {
-  fetch(api, {
-      method: "POST",
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
-      credentials: "include",
-
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(uservoted => {
-      console.log(uservoted);
-    })
-
-}
-
-
-fetch(api2, {
-    method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    credentials: "include",
-  })
-  .then(response => {
-    return response.json();
-  })
-  .then(session => {
-    currentUser = JSON.parse(session);
-    console.log(currentUser);
-  })
-
-
  const getPage = (page) => {
-fetch(`${api}/?page=${page}`)
+fetch(`${api}/?page=${page}`, {
+  credentials: "include",
+})
   .then(response => {
     return response.json();
   })
   .then(postsOnPage => {
-    console.log(postsOnPage);
     totalPosts = JSON.parse(postsOnPage['total'][0]);
     for (posts of postsOnPage['posts'][0]) {
-      if (currentUser == posts.author_id) {
+      if (postsOnPage.session == posts.author_id) {
+        let editBtn = `<p class="edit"><a href="/editpost.php?post=${posts.id}">Edit post</a></p>`;
+        editP.href = `editpost.php?post=${posts.id}`
         editP = editBtn;
       } else {
         editP = "";
@@ -118,11 +107,23 @@ fetch(`${api}/?page=${page}`)
           </div>
         </div>
       </div>`;
-
       divElement.innerHTML += postElement;
-
       postContainer.appendChild(divElement);
+    }
+    let generatedButtonsUp = document.querySelectorAll('.upvote');
+    let generatedButtonsDown = document.querySelectorAll('.downvote');
 
+    for (votedpost of postsOnPage['uservoted'][0]) {
+      for (button of generatedButtonsUp) {
+        if (button.value == votedpost.post_id && votedpost.vote_value == 1) {
+          button.classList.add('upvoted');
+        }
+      }
+      for (button of generatedButtonsDown) {
+        if (button.value == votedpost.post_id && votedpost.vote_value == -1) {
+          button.classList.add('downvoted');
+        }
+      }
     }
       const upvoteArr = document.querySelectorAll('.upvote');
       const downvoteArr = document.querySelectorAll('.downvote');

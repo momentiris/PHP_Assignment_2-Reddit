@@ -8,7 +8,7 @@ if (isset($_POST['dir'])) {
   $voteValue = $_POST['dir'];
   $postId = $_POST['postId'];
   header("content-type: application/json");
-  checkVote($pdo,$sId);
+  echo json_encode(checkVote($pdo,$sId));
 }
 elseif ($_POST['post']) {
   $postId = $_POST['postId'];
