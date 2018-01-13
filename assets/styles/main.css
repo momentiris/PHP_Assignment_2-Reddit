@@ -10,7 +10,9 @@ body {
 .edit {
   margin-bottom: 0;
   margin-left: 1rem;
+
 }
+
 .commentEdit {
   display: flex;
   flex-flow: row nowrap;

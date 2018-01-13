@@ -1,16 +1,16 @@
 <?php
 require __DIR__.'/views/header.php';
-
+$sId = $_SESSION['user']['id'];
 
 if (!isset($_SESSION['user'])) {
   echo 'Please login to edit your posts.';
-} else {
-  if (isset($_GET)) {
-  $postId = (int)$_GET['post'];
-  $getPost = getPost($pdo, $postId);
-  }
+}
 
-?>
+if (isset($_GET)) {
+$postId = (int)$_GET['post'];
+$getPost = getPost($pdo, $postId);
+
+  if ($getPost[0]['author_id'] == $sId): ?>
 
 <div class="postboxcontainer container py-3" style="margin: 0;">
   <h3 class="">Edit post</h3>
@@ -35,4 +35,4 @@ if (!isset($_SESSION['user'])) {
     </form>
 </article>
 </div>
-<?php } ?>
+<?php else: echo "You can only edit your own posts."; endif; }?>

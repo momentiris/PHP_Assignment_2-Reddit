@@ -183,7 +183,7 @@ return $result;
 }
 
 function getPost($pdo, $postId) {
-  $getPostQ = "SELECT title, url, content FROM posts where id = :id";
+  $getPostQ = "SELECT title, url, content, time, author_id FROM posts where id = :id";
   $getPost = $pdo->prepare($getPostQ);
   $getPost->bindParam(':id', $postId, PDO::PARAM_INT);
   $getPost->execute();
@@ -201,5 +201,7 @@ function updatePost($pdo, $postId, $title, $content, $url) {
   $update->execute();
   return true;
 }
+
+
 
 ?>
