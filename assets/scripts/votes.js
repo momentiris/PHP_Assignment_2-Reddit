@@ -95,9 +95,11 @@ fetch(`${api}/?page=${page}`, {
         <div class="postCont">
           <div class="contentCont">
             <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
-            <p class="small content">${posts.content}</p>
+            <p class="small content">${posts.content.substring(0,50) + '...'}</p>
+            <div class="commentEdit">
+            <p class="comment"><a href="/comments.php?post=${posts.id}">Comment</a></p>
             <p class="small content">${editP}</p>
-            <p class=" comment"><a href="/comments.php">Comment</a></p>
+            </div>
             <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
           </div>
           <div class="voting">

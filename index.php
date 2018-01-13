@@ -4,7 +4,7 @@
   <div class="postboxcontainer container py-3" style="margin: 0;">
 
     <h3 class="newpost">New post</h3>
-    <article class="">
+    <article class="hidden">
       <form class="postForm" action="app/auth/newpost.php" method="post">
           <div class="form-group">
               <label for="title" class="small">Title</label>

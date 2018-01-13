@@ -179,9 +179,27 @@ function checkAvatar($pdo,$userId) {
   if (!$checkAvatar) {
     die(var_dump($pdo->errorInfo()));
   }
-
 return $result;
+}
 
+function getPost($pdo, $postId) {
+  $getPostQ = "SELECT title, url, content FROM posts where id = :id";
+  $getPost = $pdo->prepare($getPostQ);
+  $getPost->bindParam(':id', $postId, PDO::PARAM_INT);
+  $getPost->execute();
+  $result = $getPost->fetchAll(PDO::FETCH_ASSOC);
+  return $result;
+}
+
+function updatePost($pdo, $postId, $title, $content, $url) {
+  $updateQ = "UPDATE posts SET title = :title, content = :content, url = :url WHERE id = :id";
+  $update = $pdo->prepare($updateQ);
+  $update->bindParam(':title', $title, PDO::PARAM_STR);
+  $update->bindParam(':content', $content, PDO::PARAM_STR);
+  $update->bindParam(':url', $url, PDO::PARAM_STR);
+  $update->bindParam(':id', $postId, PDO::PARAM_INT);
+  $update->execute();
+  return true;
 }
 
 ?>

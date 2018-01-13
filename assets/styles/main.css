@@ -3,9 +3,19 @@ html {
 }
 * {
   font-family: 'Roboto Mono';
+}
+body {
+  width: 100vw;
+}
+.edit {
+  margin-bottom: 0;
+  margin-left: 1rem;
+}
+.commentEdit {
+  display: flex;
+  flex-flow: row nowrap;
 
 }
-
 .container {
   min-width: 100vw;
 
@@ -60,6 +70,7 @@ html {
   border: 1px dashed black;
   margin: 0px 0 10px 0;
   padding: 5px;
+  height: 115px;
 
 }
 
@@ -69,6 +80,8 @@ display: flex;
 flex-flow: column nowrap;
 justify-content: space-between;
 align-items: center;
+height: 90px;
+align-self: center;
 
 }
 
