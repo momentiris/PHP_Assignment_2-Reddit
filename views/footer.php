@@ -10,6 +10,11 @@
     <?php if (stripos($_SERVER['REQUEST_URI'], 'profile')): ?>
       <script src="/assets/scripts/profile.js"></script>
     <?php endif; ?>
+    <?php if (stripos($_SERVER['REQUEST_URI'], 'comments')): ?>
+      <script src="/assets/scripts/generalui.js"></script>
+
+    <?php endif; ?>
+
 
 </body>
 </html>

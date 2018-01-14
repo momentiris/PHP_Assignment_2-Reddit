@@ -73,6 +73,12 @@ body {
   margin: 0px 0 10px 0;
   padding: 5px;
   height: 115px;
+}
+.postContFull {
+  display: flex;
+  border: 1px dashed black;
+  margin: 0px 0 10px 0;
+  padding: 5px;
 
 }
 

@@ -1,4 +1,5 @@
 let currentUser = 0;
+let triggerHappy = true;
 
 let editP = ``;
 let pageNum = 1;
@@ -47,7 +48,6 @@ const voteFunc = (e) => {
         default:
       }
     })
-
 
   fetch(voteApi, {
       method: "POST",
@@ -139,10 +139,13 @@ getPage(pageNum);
 //eventlistener for detecting if user scrolled to bottom. Only runs getPage func if current amount of posts generated in dom is less than total amount of posts in DB.
 window.addEventListener('scroll', function() {
     let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts){
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts && triggerHappy == true){
       console.log(currentAmountOfPosts, totalPosts);
       pageNum++;
         getPage(pageNum);
-
+        triggerHappy = false;
+        setTimeout(function() {
+          triggerHappy = true;
+        }, 500)
   }
 });

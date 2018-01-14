@@ -19,6 +19,8 @@ $getProfile = getProfile($pdo, $userId);
 
 foreach ($getProfile['userinfo'] as $info) :?>
 
+
+
 <div class="profileBox">
   <div class="innerUser">
     <div class="userinfo">
@@ -34,6 +36,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
     </div>
     <div class="avatarBox">
       <img class="avatarimg" src="<?php echo $profilePic; ?>" alt="">
+        <?php if ($sId == $info['id']) : ?>
       <?php if (isset($_GET['editavatar'])) : ?>
         <a href="?">Edit</a>
       <?php else : ?>
@@ -48,8 +51,10 @@ foreach ($getProfile['userinfo'] as $info) :?>
           </div>
         </form>
       <?php endif; ?>
+      <?php endif; ?>
     </div>
   </div>
+    <?php if ($sId == $info['id']) : ?>
     <div class="edits">
       <p class="editprofile small">Edit profile</p>
       <p class="editpassword editprofile small">Edit password</p>
@@ -72,6 +77,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
             <button type="submit" class="">Submit</button>
         </form>
     </article>
+
     <article class=" editPwForm hidden">
       <form class="editPwForm" action="app/auth/editprofile.php" method="post">
         <div class="form-group">
@@ -85,6 +91,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
         <button type="submit" class="">Submit</button>
       </form>
     </article>
+  <?php endif; ?>
 
 
   <div class="posts">
