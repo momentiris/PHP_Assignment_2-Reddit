@@ -12,6 +12,7 @@
     <?php endif; ?>
     <?php if (stripos($_SERVER['REQUEST_URI'], 'comments')): ?>
       <script src="/assets/scripts/generalui.js"></script>
+      <script src="/assets/scripts/comments.js"></script>
 
     <?php endif; ?>
 

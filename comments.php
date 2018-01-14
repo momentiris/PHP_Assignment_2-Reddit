@@ -4,6 +4,8 @@ require __DIR__.'/views/header.php';
 if (isset($_GET['post'])) {
   $postId = (int)$_GET['post'];
   $getPost = getPost($pdo,$postId);
+  $getVote = getVote($pdo, $postId);
+
 
 }
 ?>
@@ -16,9 +18,9 @@ if (isset($_GET['post'])) {
         <p class="small time">Submitted by <a href="/profile.php?"><?php echo $getPost[0]['username']; ?></a> on <?php echo $getPost[0]['time']; ?></p>
       </div>
       <div class="voting">
-
-      <small class="votes"></small>
-
+        <button class="upvotePost" data-dir="+1">Upvote</button>
+        <small class="votes"><?php echo $getVote[0]; ?></small>
+        <button class="downvotePost" data-dir="-1">Downvote</button>
       </div>
     </div>
   </div>

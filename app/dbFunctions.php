@@ -202,6 +202,15 @@ function updatePost($pdo, $postId, $title, $content, $url) {
   return true;
 }
 
+function getVote($pdo, $postId) {
+  $countVotes = $pdo->prepare("SELECT sum(uservotes.vote_value) as totalvalue from posts LEFT JOIN uservotes ON uservotes.post_id = posts.id WHERE posts.id = :post_id LIMIT 1");
+  $countVotes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $countVotes->execute();
+  $result = $countVotes->fetch(PDO::FETCH_NUM);
+  return $result;
+
+}
+
 
 
 ?>
