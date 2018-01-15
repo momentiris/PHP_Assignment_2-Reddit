@@ -33,6 +33,10 @@ $getPost = getPost($pdo, $postId);
         </div><!-- /form-group -->
         <button type="submit" class="">Edit post</button>
     </form>
+    <form class="postForm" action="/app/posts/delete.php" method="post">
+      <input type="hidden" name="id" value="<?php echo $postId ?>" >
+      <button type="submit" name="delete"class="">Delete post</button>
+    </form>
 </article>
 </div>
 <?php else: echo "You can only edit your own posts."; endif; }?>

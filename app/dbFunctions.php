@@ -24,7 +24,7 @@ function newUser($pdo, $username, $email, $password, $time) {
 
 //Login
 function login($pdo, $username, $passwordInput) {
-  $user = $pdo->prepare('SELECT * FROM users WHERE username = :username LIMIT 1');
+  $user = $pdo->prepare('SELECT username, password, id FROM users WHERE username = :username LIMIT 1');
   $user->bindParam(':username', $username, PDO::PARAM_STR);
   $user->execute();
   $user = $user->fetch(PDO::FETCH_ASSOC);
@@ -208,9 +208,35 @@ function getVote($pdo, $postId) {
   $countVotes->execute();
   $result = $countVotes->fetch(PDO::FETCH_NUM);
   return $result;
-
 }
 
+function deletePost($pdo, $postId) {
+  $deleteQ = "DELETE FROM posts WHERE id = :post_id";
+  $delete = $pdo->prepare($deleteQ);
+  $delete->bindParam(':post_id', $postId);
+  $delete->execute();
+  return true;
+}
+
+function insertComment($pdo, $postId, $sId, $username, $time, $content) {
+  $commentsQ = "INSERT INTO comments (post_id, author_id, time, content, username) VALUES(:post_id, :author_id, :time, :content, :username)";
+  $comments = $pdo->prepare($commentsQ);
+  $comments->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $comments->bindParam(':author_id', $sId, PDO::PARAM_INT);
+  $comments->bindParam(':time', $time, PDO::PARAM_STR);
+  $comments->bindParam(':content', $content, PDO::PARAM_STR);
+  $comments->bindParam(':username', $username, PDO::PARAM_STR);
+  $comments->execute();
+}
+
+function getComments($pdo, $postId) {
+  $getQ = "SELECT content, username, time FROM comments WHERE post_id = :post_id";
+  $get = $pdo->prepare($getQ);
+  $get->bindParam(':post_id', $postId, PDO::PARAM_INT);
+  $get->execute();
+  $result = $get->fetchAll(PDO::FETCH_ASSOC);
+  return $result;
+}
 
 
 ?>

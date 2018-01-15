@@ -101,7 +101,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
     <h5>Posts: <?php echo count($getProfile['posts'][0]) ?></h5>
     <div class="countMe">
       <?php foreach ($getProfile['posts'][0] as $post): ?>
-        <div class="postCont">
+        <div class="profilePosts">
           <div class="contentCont">
             <a href="<?php echo $post['title']; ?>"><h5 class="card-title title"><?php echo $post['title']; ?></h5></a>
             <p class="small content"><?php echo $post['content']; ?></p>

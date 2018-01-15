@@ -7,6 +7,7 @@ let totalPosts = 0;
 const api = "/../../pagination.php";
 const voteApi = 'http://localhost:8888/app/auth/votes.php';
 const postContainer = document.querySelector('.postcontainer');
+const loading = document.querySelector('.loading');
 let divElement = document.createElement('div');
 
 // generate upvote and downvote element
@@ -29,7 +30,7 @@ const voteFunc = (e) => {
       body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
     .then(response => {
-      return response.json()
+      return response.json();
     })
     .then(value => {
       console.log(value);
@@ -47,6 +48,8 @@ const voteFunc = (e) => {
         e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
         default:
       }
+
+
     })
 
   fetch(voteApi, {
@@ -72,6 +75,7 @@ const downvote = (downvote) => {
 }
 
  const getPage = (page) => {
+   loading.classList.remove('loadingHidden');
 fetch(`${api}/?page=${page}`, {
   credentials: "include",
 })
@@ -131,6 +135,8 @@ fetch(`${api}/?page=${page}`, {
       const downvoteArr = document.querySelectorAll('.downvote');
       Array.from(upvoteArr).forEach(upvote);
       Array.from(downvoteArr).forEach(downvote);
+      loading.classList.add('loadingHidden');
+
 })
 }
 

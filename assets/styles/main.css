@@ -18,6 +18,38 @@ body {
   flex-flow: row nowrap;
 
 }
+.slowpokewrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.slowpoke {
+  height: 50px;
+  width: 75px;
+z-index: 0;
+transition: all 10s ease;
+pointer-events: all;
+}
+.slowpoke:hover {
+  transform: translateY(50px);
+  pointer-events:all;
+}
+.loadwrap {
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.loading {
+
+  height: 30px;
+
+}
+.loadingHidden {
+  opacity: 0;
+}
 .container {
   min-width: 100vw;
 
@@ -43,8 +75,8 @@ body {
 
   margin-top: .5rem;
 
-  padding-left: 1rem;
-  padding-right: 1rem;
+
+
 }
 .whites {
   background-color: white;
@@ -73,13 +105,30 @@ body {
 .addeBody {
   background-color: ;
 }
-
+.logotype {
+  height: 40px;
+  margin-right: 1rem;
+  left: 50%;
+}
+.loginform {
+  width: 50vw;
+}
 .postCont {
   display: flex;
   border: 1px dashed black;
   margin: 0px 0 10px 0;
   padding: 5px;
   height: 115px;
+  z-index: 2;
+  background-color: white;
+}
+.profilePosts {
+  display: flex;
+  border: 1px dashed black;
+  margin: 0px 0 10px 0;
+  padding: 5px;
+  z-index: 2;
+  background-color: white;
 }
 .postContFull {
   display: flex;
@@ -118,8 +167,12 @@ align-self: center;
   padding: 5;
   font-size: 13px;
 }
-
+.inlineCont {
+  display:flex;
+  flex-flow: row nowrap;
+}
 .newpost {
+
 
 cursor: pointer;
 width: 200px;
@@ -153,6 +206,7 @@ width: 200px;
 }
 .time {
   margin-bottom: 0;
+
 }
 .comment {
   margin-bottom: 0;
