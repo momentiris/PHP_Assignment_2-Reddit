@@ -3,43 +3,27 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <div class="navcontainerFixed">
 
-
-<nav class="addenav">
-
-    <a class="fleshbacklogo" href="#"><?php echo $config['title']; ?></a>
-    <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-sm navbar-light whites">
+    <a class="fleshbacklogo" href=""><?php echo $config['title']; ?></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbox">
-        <ul class="navbar-nav addeUl">
-            <li class="addeLi nav-item">
-                <a class="nav-link" href="./index.php">Home</a>
-            </li>
-            <li class="addeLi nav-item">
-                <a class="nav-link" href="./about.php">About</a>
-            </li>
-            <li class="addeLi nav-item">
-            </li>
-        </ul>
-        <ul class="navbar-nav addeUl">
-        <?php if (isset($_SESSION['user'])): ?>
-          <p class="small loggedIn">Logged in as: <?php echo $_SESSION['user']['name']; ?></p>
-          <li class="addeLi nav-item">
-            <a class="nav-link" href="./profile.php">Profile</a>
-          </li>
-          <li class="addeLi nav-item">
-            <a class="nav-link" href="./app/auth/logout.php">Log out</a>
-          </li>
-            <?php else: ?>
-          <li class="addeLi nav-item">
-            <a class="nav-link" href="./registration.php">Register</a>
-          </li>
-          <li class="addeLi nav-item">
-            <a class="nav-link" href="./login.php">Login</a>
-          </li>
-      <?php endif; ?>
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav justify-content-start w-100">
+        <a class=" fixed" href="./index.php">Home</a>
+        </div>
+    <div class="navbar-nav justify-content-end w-100">
+          <?php if (isset($_SESSION['user'])): ?>
 
-</nav>
+        <a class="fixed " href="./profile.php">Profile</a>
+        <a class="fixed" href="./app/auth/logout.php">Log out</a>
+          <?php else: ?>
+        <a class="fixed" href="./registration.php">Register</a>
+        <a class="fixed" href="./login.php">Login</a>
+        <?php endif; ?>
+
+    </div>
+    </div>
+  </nav>
+
 </div>

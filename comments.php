@@ -18,9 +18,9 @@ if (isset($_GET['post'])) {
         <p class="small time">Submitted by <a href="/profile.php?"><?php echo $getPost[0]['username']; ?></a> on <?php echo $getPost[0]['time']; ?></p>
       </div>
       <div class="voting">
-        <button class="upvotePost" data-dir="+1">Upvote</button>
+        <button class="upvotePost" data-dir="+1" value="<?php echo $getPost[0]['id']; ?>">Upvote</button>
         <small class="votes"><?php echo $getVote[0]; ?></small>
-        <button class="downvotePost" data-dir="-1">Downvote</button>
+        <button class="downvotePost" data-dir="-1" value="<?php echo $getPost[0]['id']; ?>">Downvote</button>
       </div>
     </div>
   </div>

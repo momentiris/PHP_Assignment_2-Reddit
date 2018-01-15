@@ -16,16 +16,16 @@ const voteFunc = (e) => {
       console.log(value);
       switch (value) {
         case 1:
-          e.target.classList.add('upvoted');
-          e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
+          upvotePost.classList.add('upvoted');
+          downvotePost.classList.remove('downvoted');
           break;
         case -1:
-          e.target.classList.add('downvoted');
-          e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
+          downvotePost.classList.add('downvoted');
+          upvotePost.classList.remove('upvoted');
           break;
         case 0:
-        e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
-        e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
+        upvotePost.classList.remove('downvoted');
+        downvotePost.classList.remove('upvoted');
         default:
       }
     })

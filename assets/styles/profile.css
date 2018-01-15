@@ -1,21 +1,38 @@
+/* Smartphones (landscape) ----------- */
+@media only screen and (max-width: 500px) {
+
+  .avatarimg {
+    width: 100px !important;
+    height: 100px !important;
+
+  }
+
+}
+
 .profileBox {
   width: 100vw;
   padding: 1rem;
 }
 .innerUser {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row-reverse wrap;
   align-items: center;
-
+  justify-content: space-between;
+  max-width: 800px;
 }
 .usernameheader {
 padding-bottom: 1rem;
 }
 .userinfo {
   height: 60%;
-  width: 70%;
+  width: 40%;
   padding-top: 1rem;
   margin-bottom: 1rem;
+}
+.avatarimg {
+  transition: all .2s ease;
+  height: 200px;
+  width: 200px;
 }
 .infoUl {
 padding: 0;
@@ -42,6 +59,10 @@ position: absolute;
 
 .avatarBox {
   padding-top: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 

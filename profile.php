@@ -6,7 +6,8 @@ $placeholder = 'placeholder.png';
 if (isset($_GET['user'])) {
   $userId = $_GET['user'];
 } else {
-  $userId = $_SESSION['user']['id'];
+  $userId = (int)$_SESSION['user']['id'];
+
 }
 $checkAvatar = checkAvatar($pdo, $userId);
 if ($checkAvatar['avatar']) {
@@ -17,23 +18,13 @@ if ($checkAvatar['avatar']) {
 
 $getProfile = getProfile($pdo, $userId);
 
+
 foreach ($getProfile['userinfo'] as $info) :?>
 
 
 
 <div class="profileBox">
   <div class="innerUser">
-    <div class="userinfo">
-      <h2 class="usernameheader"><?php echo $info['username']; ?></h2>
-      <ul class="infoUl">
-        <label class="bioInfo" for="biography">Biography:</label>
-        <p class="small"><?php echo $info['biography']; ?> </p>
-        <label class="bioInfo" for="email">Email:</label>
-        <p class="small"><?php echo $info['email']; ?> </p>
-        <label class="bioInfo" for="data">Member since: </label>
-        <p class="small"><?php echo $info['userdate']; ?></p>
-      </ul>
-    </div>
     <div class="avatarBox">
       <img class="avatarimg" src="<?php echo $profilePic; ?>" alt="">
         <?php if ($sId == $info['id']) : ?>
@@ -53,6 +44,18 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <?php endif; ?>
       <?php endif; ?>
     </div>
+    <div class="userinfo">
+      <h2 class="usernameheader"><?php echo $info['username']; ?></h2>
+      <ul class="infoUl">
+        <label class="bioInfo" for="biography">Biography:</label>
+        <p class="small"><?php echo $info['biography']; ?> </p>
+        <label class="bioInfo" for="email">Email:</label>
+        <p class="small"><?php echo $info['email']; ?> </p>
+        <label class="bioInfo" for="data">Member since: </label>
+        <p class="small"><?php echo $info['userdate']; ?></p>
+      </ul>
+    </div>
+
   </div>
     <?php if ($sId == $info['id']) : ?>
     <div class="edits">

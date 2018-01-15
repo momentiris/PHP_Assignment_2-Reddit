@@ -24,6 +24,7 @@ body {
 }
 .fleshbacklogo {
   font-size: 24px;
+  margin-right: 1rem;
 }
 .navbox {
   display: flex;
@@ -32,22 +33,28 @@ body {
   align-items: center;
   width: 100%;
 }
-.addenav  {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  border-bottom: 1px dashed black;
-  font-size: 14px;
 
-}
 .loggedIn {
   margin: 0;
   padding-top: .5rem;
 }
 
 .navcontainerFixed {
-  padding: 0 1rem 0 1rem !important;
+
   margin-top: .5rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.whites {
+  background-color: white;
+  width: 100%;
+    border-bottom: 1px dashed black;
+    margin: 0 auto;
+}
+.fixed {
+  color: #007bff;
+  margin-left: 1rem;
 }
 
 .addeUl {

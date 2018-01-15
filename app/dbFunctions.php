@@ -51,8 +51,8 @@ function getProfile($pdo, $userId) {
     'posts'    => [],
     'comments' => [],
   ];
-  $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time, FROM posts WHERE author_id = :id");
-  $countPosts->bindParam(':id', $userId);
+  $countPosts = $pdo->prepare("SELECT posts.title, posts.content, posts.time FROM posts WHERE author_id = :id");
+  $countPosts->bindParam(':id', $userId, PDO::PARAM_INT);
   $countPosts ->execute();
   $allPosts = $countPosts->fetchAll(PDO::FETCH_ASSOC);
 
@@ -183,7 +183,7 @@ return $result;
 }
 
 function getPost($pdo, $postId) {
-  $getPostQ = "SELECT title, url, content, time, author_id, username FROM posts where id = :id";
+  $getPostQ = "SELECT title, url, content, time, author_id,id, username FROM posts where id = :id";
   $getPost = $pdo->prepare($getPostQ);
   $getPost->bindParam(':id', $postId, PDO::PARAM_INT);
   $getPost->execute();
