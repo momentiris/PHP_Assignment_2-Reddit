@@ -165,7 +165,6 @@ function newTotalVoteValue($pdo, $postId) {
     die(var_dump($pdo->errorInfo()));
   }
   $result = $newTotalValue->fetch(PDO::FETCH_NUM);
-
   echo json_encode($result);
 }
 
@@ -175,11 +174,10 @@ function checkAvatar($pdo,$userId) {
   $checkAvatar->bindParam(':id', $userId, PDO::PARAM_INT);
   $checkAvatar->execute();
   $result = $checkAvatar->fetch(PDO::FETCH_ASSOC);
-
   if (!$checkAvatar) {
     die(var_dump($pdo->errorInfo()));
   }
-return $result;
+  return $result;
 }
 
 function getPost($pdo, $postId) {
@@ -230,7 +228,7 @@ function insertComment($pdo, $postId, $sId, $username, $time, $content) {
 }
 
 function getComments($pdo, $postId) {
-  $getQ = "SELECT content, username, time FROM comments WHERE post_id = :post_id";
+  $getQ = "SELECT id, content, username, time FROM comments WHERE post_id = :post_id";
   $get = $pdo->prepare($getQ);
   $get->bindParam(':post_id', $postId, PDO::PARAM_INT);
   $get->execute();

@@ -1,63 +1,74 @@
 html {
   font-size: 14px;
 }
+
 * {
   font-family: 'Roboto Mono';
 }
+
 body {
   width: 100vw;
 }
+
 .edit {
   margin-bottom: 0;
   margin-left: 1rem;
-
 }
 
 .commentEdit {
   display: flex;
   flex-flow: row nowrap;
-
 }
+
 .slowpokewrap {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
+
 .slowpoke {
   height: 50px;
   width: 75px;
-z-index: 0;
-transition: all 10s ease;
-pointer-events: all;
+  z-index: 0;
+  transition: all 10s ease;
+  pointer-events: all;
+  position: fixed;
 }
+
 .slowpoke:hover {
   transform: translateY(50px);
-  pointer-events:all;
+  pointer-events: all;
 }
+
 .loadwrap {
-  width: 100vw;
-  height: 50px;
+  width: 95vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  align-self: center;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px dashed black;
 }
+
 .loading {
-
   height: 30px;
-
 }
+
 .loadingHidden {
   opacity: 0;
 }
+
 .container {
   min-width: 100vw;
-
 }
+
 .fleshbacklogo {
   font-size: 24px;
   margin-right: 1rem;
 }
+
 .navbox {
   display: flex;
   flex-flow: row nowrap;
@@ -72,18 +83,20 @@ pointer-events: all;
 }
 
 .navcontainerFixed {
-
   margin-top: .5rem;
-
-
-
 }
+
+.reply {
+  margin-left: 1rem;
+}
+
 .whites {
   background-color: white;
   width: 100%;
-    border-bottom: 1px dashed black;
-    margin: 0 auto;
+  border-bottom: 1px dashed black;
+  margin: 0 auto;
 }
+
 .fixed {
   color: #007bff;
   margin-left: 1rem;
@@ -92,27 +105,30 @@ pointer-events: all;
 .addeUl {
   display: flex;
   flex-flow: row nowrap;
-
 }
 
 .addeLi {
-    margin: 0 1rem 0 1rem;
+  margin: 0 1rem 0 1rem;
 }
 
 .addeCard {
   background-color: black;
 }
+
 .addeBody {
   background-color: ;
 }
+
 .logotype {
   height: 40px;
   margin-right: 1rem;
   left: 50%;
 }
+
 .loginform {
   width: 50vw;
 }
+
 .postCont {
   display: flex;
   border: 1px dashed black;
@@ -122,6 +138,7 @@ pointer-events: all;
   z-index: 2;
   background-color: white;
 }
+
 .profilePosts {
   display: flex;
   border: 1px dashed black;
@@ -130,23 +147,24 @@ pointer-events: all;
   z-index: 2;
   background-color: white;
 }
+
 .postContFull {
   display: flex;
   border: 1px dashed black;
   margin: 0px 0 10px 0;
   padding: 5px;
-
+  min-height: 115px;
+  position: relative;
 }
 
 .voting {
-margin: 5px;
-display: flex;
-flex-flow: column nowrap;
-justify-content: space-between;
-align-items: center;
-height: 90px;
-align-self: center;
-
+  margin: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  align-self: center;
 }
 
 .contentCont {
@@ -154,9 +172,9 @@ align-self: center;
 }
 
 .contentArea {
-	width: 70%;
-	height: 120px;
-	padding: 5px;
+  width: 70%;
+  height: 120px;
+  padding: 5px;
   resize: none;
 }
 
@@ -167,78 +185,82 @@ align-self: center;
   padding: 5;
   font-size: 13px;
 }
+
 .inlineCont {
-  display:flex;
+  display: flex;
   flex-flow: row nowrap;
 }
+
 .newpost {
-
-
-cursor: pointer;
-width: 200px;
-
-
+  cursor: pointer;
+  width: 200px;
 }
 
 .newpost:hover {
   color: #007bff;
 }
-.postboxcontainer {
 
-}
+.postboxcontainer {}
 
 .form-group {
   margin: 0;
   position: relative;
 }
 
-.post-show {
+.post-show {}
 
-}
 .postForm {
   margin-bottom: 2rem;
 }
+
 .postBox {
   transition: all .3s ease;
   position: relative;
   padding-top: 0 !important;
-
 }
+
 .time {
   margin-bottom: 0;
-
 }
+
+.timeComment {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+}
+
 .comment {
   margin-bottom: 0;
 }
 
 .hidden {
-height: 0;
-opacity: 0;
-transform: translateY(-30px);
-transition: all .3s ease;
-visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all .3s ease;
+  visibility: hidden;
   padding-bottom: 0 !important;
 }
 
 .showing {
   transition: all .3s ease;
-height: 350px;
-visibility: visible;
-opacity: 1;
+  height: 350px;
+  visibility: visible;
+  opacity: 1;
 }
+
 .deniedUsername {
   color: red;
   margin: 0;
   position: absolute;
   left: 20%;
   top: 20%;
-
 }
 
 .upvoted {
   background-color: green;
 }
+
 .downvoted {
   background-color: red;
 }

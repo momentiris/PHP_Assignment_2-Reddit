@@ -25,7 +25,9 @@ downvoteBtn.dataset.dir = "-1";
 const voteFunc = (e) => {
   fetch(voteApi, {
       method: "POST",
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       credentials: "include",
       body: `postId=${e.target.value}&dir=${e.target.dataset.dir}`
     })
@@ -44,26 +46,26 @@ const voteFunc = (e) => {
           e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
           break;
         case 0:
-        e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
-        e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
+          e.target.parentNode.querySelector('.downvote').classList.remove('downvoted');
+          e.target.parentNode.querySelector('.upvote').classList.remove('upvoted');
         default:
       }
-
-
     })
 
   fetch(voteApi, {
       method: "POST",
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       credentials: "include",
-      body:`post=true&postId=${e.target.value}}`
+      body: `post=true&postId=${e.target.value}}`
     })
     .then(response => {
       return response.json();
     })
     .then(newTotal => {
       e.target.parentNode.querySelector('.votes').innerHTML =
-      newTotal;
+        newTotal;
     })
 
 }
@@ -74,84 +76,86 @@ const downvote = (downvote) => {
   downvote.addEventListener('click', voteFunc);
 }
 
- const getPage = (page) => {
-   loading.classList.remove('loadingHidden');
-fetch(`${api}/?page=${page}`, {
-  credentials: "include",
-})
-  .then(response => {
-    return response.json();
-  })
-  .then(postsOnPage => {
-    totalPosts = JSON.parse(postsOnPage['total'][0]);
-    for (posts of postsOnPage['posts'][0]) {
-      if (postsOnPage.session == posts.author_id) {
-        let editBtn = `<p class="edit"><a href="/editpost.php?post=${posts.id}">Edit post</a></p>`;
-        editP.href = `editpost.php?post=${posts.id}`
-        editP = editBtn;
-      } else {
-        editP = "";
-      }
-      upvoteBtn.setAttribute("value", `${posts.id}`);
-      downvoteBtn.setAttribute("value", `${posts.id}`);
-      let postElement =
-      `<div class="countMe">
-        <div class="postCont">
-          <div class="contentCont">
-            <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
-            <p class="small content">${posts.content.substring(0,50) + '...'}</p>
-            <div class="commentEdit">
-            <p class="comment"><a href="/comments.php?post=${posts.id}">Comment</a></p>
-            <p class="small content">${editP}</p>
-            </div>
-            <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
-          </div>
-          <div class="voting">
-          ${upvoteBtn.outerHTML}
-          <small class="votes">${posts.votes}</small>
-          ${downvoteBtn.outerHTML}
-          </div>
-        </div>
-      </div>`;
-      divElement.innerHTML += postElement;
-      postContainer.appendChild(divElement);
-    }
-    let generatedButtonsUp = document.querySelectorAll('.upvote');
-    let generatedButtonsDown = document.querySelectorAll('.downvote');
+const getPage = (page) => {
+  loading.classList.remove('loadingHidden');
+  fetch(`${api}/?page=${page}`, {
+      credentials: "include",
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(postsOnPage => {
 
-    for (votedpost of postsOnPage['uservoted'][0]) {
-      for (button of generatedButtonsUp) {
-        if (button.value == votedpost.post_id && votedpost.vote_value == 1) {
-          button.classList.add('upvoted');
+        totalPosts = JSON.parse(postsOnPage['total'][0]);
+        for (posts of postsOnPage['posts'][0]) {
+          if (postsOnPage.session == posts.author_id) {
+            let editBtn = `<p class="edit"><a href="/editpost.php?post=${posts.id}">Edit post</a></p>`;
+            editP.href = `editpost.php?post=${posts.id}`
+            editP = editBtn;
+          } else {
+            editP = "";
+          }
+          upvoteBtn.setAttribute("value", `${posts.id}`);
+          downvoteBtn.setAttribute("value", `${posts.id}`);
+          let postElement =
+            `<div class="countMe">
+              <div class="postCont">
+                <div class="contentCont">
+                  <a href="${posts.url}"><h5 class="card-title title">${posts.title}</h5></a>
+                  <p class="small content">${posts.content.substring(0,50) + '...'}</p>
+                  <div class="commentEdit">
+                    <p class="comment"><a href="/comments.php?post=${posts.id}">Comment</a></p>
+                    <p class="small content">${editP}</p>
+                  </div>
+                  <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
+                </div>
+                <div class="voting">
+                  ${upvoteBtn.outerHTML}
+                <small class="votes">${posts.votes}</small>
+                  ${downvoteBtn.outerHTML}
+                </div>
+              </div>
+            </div>`;
+          divElement.innerHTML += postElement;
+          postContainer.appendChild(divElement);
         }
-      }
-      for (button of generatedButtonsDown) {
-        if (button.value == votedpost.post_id && votedpost.vote_value == -1) {
-          button.classList.add('downvoted');
-        }
-      }
-    }
-      const upvoteArr = document.querySelectorAll('.upvote');
-      const downvoteArr = document.querySelectorAll('.downvote');
-      Array.from(upvoteArr).forEach(upvote);
-      Array.from(downvoteArr).forEach(downvote);
-      loading.classList.add('loadingHidden');
 
-})
+        let generatedButtonsUp = document.querySelectorAll('.upvote');
+        let generatedButtonsDown = document.querySelectorAll('.downvote');
+
+        for (votedpost of postsOnPage['uservoted'][0]) {
+          for (button of generatedButtonsUp) {
+            if (button.value == votedpost.post_id && votedpost.vote_value == 1) {
+              button.classList.add('upvoted');
+            }
+          }
+          for (button of generatedButtonsDown) {
+            if (button.value == votedpost.post_id && votedpost.vote_value == -1) {
+              button.classList.add('downvoted');
+            }
+          }
+        }
+        const upvoteArr = document.querySelectorAll('.upvote');
+        const downvoteArr = document.querySelectorAll('.downvote');
+        Array.from(upvoteArr).forEach(upvote);
+        Array.from(downvoteArr).forEach(downvote);
+        loading.classList.add('loadingHidden');
+
+      })
 }
 
 getPage(pageNum);
 
 //eventlistener for detecting if user scrolled to bottom. Only runs getPage func if current amount of posts generated in dom is less than total amount of posts in DB.
 window.addEventListener('scroll', function() {
-    let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts && triggerHappy == true){
-      console.log(currentAmountOfPosts, totalPosts);
-      pageNum++;
-        getPage(pageNum);
-        triggerHappy = false;
-        setTimeout(function() {
-          triggerHappy = true;
-        }, 500)
+  let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts && triggerHappy == true) {
+    console.log(currentAmountOfPosts, totalPosts);
+    pageNum++;
+    getPage(pageNum);
+    triggerHappy = false;
+    setTimeout(function() {
+      triggerHappy = true;
+    }, 500)
   }
 });

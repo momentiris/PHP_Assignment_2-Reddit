@@ -27,6 +27,7 @@ const voteFunc = (e) => {
         upvotePost.classList.remove('downvoted');
         downvotePost.classList.remove('upvoted');
         default:
+        break;
       }
     })
 
