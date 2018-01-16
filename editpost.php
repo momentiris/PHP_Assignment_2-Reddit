@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require __DIR__.'/views/header.php';
 $sId = $_SESSION['user']['id'];
 

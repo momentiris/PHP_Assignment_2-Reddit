@@ -1,6 +1,7 @@
 <?php
-require __DIR__.'/../autoload.php';
+declare(strict_types=1);
 
+require __DIR__.'/../autoload.php';
 
 if (isset($_POST['title'], $_POST['content'], $_POST['url'])) {
   $postAuthor = $_SESSION['user']['name'];

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 require 'views/header.php';
  ?>
 
@@ -25,7 +27,7 @@ require 'views/header.php';
             <input class="inputArea" type="password" name="password" placeholder="Please choose your password " required>
         </div>
         <!-- /form-group -->
-    
+
         <button class="submit" type="submit">Register</button>
     </form>
 </article>

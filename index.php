@@ -1,4 +1,6 @@
-<?php require __DIR__.'/views/header.php';
+<?php
+declare(strict_types=1);
+require __DIR__.'/views/header.php';
 if (!isset($_SESSION['user']['name'])) : ?>
   <div class="nothingToShow">
     <h6>Please <a href="./login.php"> login </a>to show secret content. </br>Not a secret member?<a href="./registration.php"> Register here! </a></h6>

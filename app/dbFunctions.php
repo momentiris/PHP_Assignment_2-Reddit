@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 //New Post
 function newPost($pdo, $title, $content, $url, $postAuthor, $authorId, $time, $votes) {
   $user = $pdo->prepare('INSERT INTO posts (author_id, title, content, url, username, time, votes) VALUES (:author_id, :title, :content, :url, :username, :time, :votes)');
