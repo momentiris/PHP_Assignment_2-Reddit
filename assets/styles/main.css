@@ -19,7 +19,10 @@ body {
   display: flex;
   flex-flow: row nowrap;
 }
-
+.welcomeUser {
+  position: absolute;
+  top: .5rem;
+}
 .slowpokewrap {
   display: flex;
   justify-content: center;
@@ -65,8 +68,11 @@ body {
 }
 
 .fleshbacklogo {
-  font-size: 24px;
+  font-size: 20px;
+  color: black;
   margin-right: 1rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .navbox {
@@ -83,7 +89,7 @@ body {
 }
 
 .navcontainerFixed {
-  margin-top: .5rem;
+
 }
 
 .reply {
@@ -95,11 +101,15 @@ body {
   width: 100%;
   border-bottom: 1px dashed black;
   margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
 }
 
 .fixed {
   color: #007bff;
+
   margin-left: 1rem;
+
 }
 
 .addeUl {
@@ -200,7 +210,9 @@ body {
   color: #007bff;
 }
 
-.postboxcontainer {}
+.postboxcontainer {
+  padding-bottom: 0 !important;
+}
 
 .form-group {
   margin: 0;
@@ -263,4 +275,12 @@ body {
 
 .downvoted {
   background-color: red;
+}
+
+.nothingToShow {
+  height: 50vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

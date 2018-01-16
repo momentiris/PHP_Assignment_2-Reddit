@@ -7,8 +7,8 @@ if (isset($_GET['user'])) {
   $userId = $_GET['user'];
 } else {
   $userId = (int)$_SESSION['user']['id'];
-
 }
+
 $checkAvatar = checkAvatar($pdo, $userId);
 if ($checkAvatar['avatar']) {
   $profilePic = "/assets/avatars/" . $checkAvatar['avatar'];
@@ -17,11 +17,12 @@ if ($checkAvatar['avatar']) {
 }
 
 $getProfile = getProfile($pdo, $userId);
-
-
+if (!$getProfile) : ?>
+<div class="nothingToShow">
+  <h6>There doesn't seem to be anything here. <a href="./index.php">Go back.</a> </h6>
+</div>
+<?php else :
 foreach ($getProfile['userinfo'] as $info) :?>
-
-
 
 <div class="profileBox">
   <div class="innerUser">
@@ -29,15 +30,14 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <img class="avatarimg" src="<?php echo $profilePic; ?>" alt="">
         <?php if ($sId == $info['id']) : ?>
       <?php if (isset($_GET['editavatar'])) : ?>
-        <a href="?">Edit</a>
+        <a class="small" href="?">Edit</a>
       <?php else : ?>
-        <a href="?editavatar">Edit</a>
+        <a class="small" href="?editavatar">Edit</a>
       <?php endif; ?>
       <?php if (isset($_GET['editavatar'])) : ?>
         <form action="app/auth/avatar.php" method="post" enctype="multipart/form-data">
           <div class="form-group uploadavatar">
-            <label class="small" for="title">Please choose an image.</label><br>
-            <input class="small" name="avatar" type="file" required>
+            <input class="small" name="avatar" type="file" required> </br>
             <button type="submit" class="small">Upload</button>
           </div>
         </form>
@@ -55,8 +55,8 @@ foreach ($getProfile['userinfo'] as $info) :?>
         <p class="small"><?php echo $info['userdate']; ?></p>
       </ul>
     </div>
-
   </div>
+
     <?php if ($sId == $info['id']) : ?>
     <div class="edits">
       <p class="editprofile small">Edit profile</p>
@@ -76,11 +76,9 @@ foreach ($getProfile['userinfo'] as $info) :?>
                 <label for="content" class="small">Biography</label>
                 <textarea maxlength="240"class="form-control contentArea inputArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
             </div><!-- /form-group -->
-
             <button type="submit" class="">Submit</button>
         </form>
     </article>
-
     <article class=" editPwForm hidden">
       <form class="editPwForm" action="app/auth/editprofile.php" method="post">
         <div class="form-group">
@@ -96,14 +94,15 @@ foreach ($getProfile['userinfo'] as $info) :?>
     </article>
   <?php endif; ?>
 
-
   <div class="posts">
     <h5>Posts: <?php echo count($getProfile['posts'][0]) ?></h5>
     <div class="countMe">
       <?php foreach ($getProfile['posts'][0] as $post): ?>
         <div class="profilePosts">
           <div class="contentCont">
-            <a href="<?php echo $post['title']; ?>"><h5 class="card-title title"><?php echo $post['title']; ?></h5></a>
+            <a href="<?php echo $post['title']; ?>">
+              <h5 class="card-title title"><?php echo $post['title']; ?></h5>
+            </a>
             <p class="small content"><?php echo $post['content']; ?></p>
             <p class="small time">Submitted by <a href="?user"><?php echo $info['username']; ?></a> on <?php echo $post['time']; ?></p>
           </div>
@@ -111,7 +110,6 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <?php endforeach; ?>
     <?php endforeach; ?>
 </div>
-
-
+<?php endif; ?>
 
 <?php require __DIR__.'/views/footer.php'; ?>

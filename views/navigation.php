@@ -17,6 +17,7 @@
     <div class="navbar-nav justify-content-end w-100">
           <?php if (isset($_SESSION['user'])): ?>
 
+            <p class="small welcomeUser">Hello, <?php echo $sId; ?></p>
         <a class="fixed " href="./profile.php">Profile</a>
         <a class="fixed" href="./app/auth/logout.php">Log out</a>
           <?php else: ?>

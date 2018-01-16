@@ -60,6 +60,9 @@ function getProfile($pdo, $userId) {
   $user->bindParam(':id', $userId, PDO::PARAM_INT);
   $user->execute();
   $result = $user->fetchAll(PDO::FETCH_ASSOC);
+  if (!$result) {
+    return false;
+  }
 
   array_push($userProfile['userinfo'], $result[0]);
   array_push($userProfile['posts'], $allPosts);

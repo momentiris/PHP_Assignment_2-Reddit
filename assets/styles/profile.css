@@ -1,12 +1,14 @@
 /* Smartphones (landscape) ----------- */
 @media only screen and (max-width: 500px) {
-
   .avatarimg {
     width: 100px !important;
     height: 100px !important;
-
   }
-
+  .uploadavatar {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+  }
 }
 
 .profileBox {
@@ -54,7 +56,7 @@ padding: 0;
 }
 
 .uploadavatar {
-position: absolute;
+  transition: all .5s ease;
 }
 
 .avatarBox {
@@ -63,6 +65,7 @@ position: absolute;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
 }
 
 

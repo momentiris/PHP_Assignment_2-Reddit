@@ -8,8 +8,13 @@ if (isset($_GET['post'])) {
 }
 $comments = getComments($pdo, $postId);
 
+if (!$getPost) : ?>
+  <div class="nothingToShow">
+    <h6>There doesn't seem to be anything here. <a href="./index.php">Go back.</a> </h6>
+  </div>
+<?php else: ?>
 
-?>
+
 <!-- Target post -->
 <div class="postboxcontainer container py-3" style="margin: 0;">
   <div class="fullPost">
@@ -58,6 +63,8 @@ $comments = getComments($pdo, $postId);
   <?php endforeach; ?>
 </div>
 <!-- End comments container -->
+
+<?php endif; ?>
 
 
 <?php require __DIR__.'/views/footer.php'; ?>
