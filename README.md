@@ -1,6 +1,6 @@
 # Cyberlink
 
-<img src="https://media.giphy.com/media/llpgvnTLi2GJ2/giphy.gif" width="100%">
+<img src="https://gph.is/2qhBVFU" width="100%">
 
 ## For more information about the requirements and info about the project visit..
 
