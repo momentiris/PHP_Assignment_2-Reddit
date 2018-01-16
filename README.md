@@ -1,5 +1,4 @@
-# Project Title
-Cyberlink
+# Cyberlink
 
 <img src="https://giphy.com/gifs/cyber-xpFSetPR3hulG" width="100%">
 
