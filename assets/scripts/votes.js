@@ -35,7 +35,6 @@ const voteFunc = (e) => {
       return response.json();
     })
     .then(value => {
-      console.log(value);
       switch (value) {
         case 1:
           e.target.classList.add('upvoted');
@@ -152,7 +151,6 @@ getPage(pageNum);
 window.addEventListener('scroll', function() {
   let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts && triggerHappy == true) {
-    console.log(currentAmountOfPosts, totalPosts);
     pageNum++;
     getPage(pageNum);
     triggerHappy = false;

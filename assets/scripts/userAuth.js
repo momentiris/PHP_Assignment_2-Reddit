@@ -27,13 +27,3 @@ fetch(`../../search_users.php`)
   }
   usernameField.addEventListener('keyup', checkUsername);
 });
-
-
-// let lastKeyPressTime = 0;
-// usernameField.addEventListener('keyup', function() {
-//   if (Date.now() - lastKeyPressTime > 2000) {
-//     console.log('last pressed:', lastKeyPressTime);
-//     lastKeyPressTime = Date.now();
-//     checkUsername();
-//   }
-// });

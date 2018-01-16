@@ -13,7 +13,6 @@ const voteFunc = (e) => {
       return response.json()
     })
     .then(value => {
-      console.log(value);
       switch (value) {
         case 1:
           upvotePost.classList.add('upvoted');
@@ -27,7 +26,7 @@ const voteFunc = (e) => {
         upvotePost.classList.remove('downvoted');
         downvotePost.classList.remove('upvoted');
         break;
-      
+
       }
     })
 
