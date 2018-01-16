@@ -15,9 +15,9 @@
         <a class=" fixed" href="./index.php">Home</a>
         </div>
     <div class="navbar-nav justify-content-end w-100">
-          <?php if (isset($_SESSION['user'])): ?>
+          <?php if (isset($_SESSION['user']['name'])): ?>
 
-            <p class="small welcomeUser">Hello, <?php echo $sId; ?></p>
+            <p class="small welcomeUser">Hello, <?php echo $_SESSION['user']['name']; ?></p>
         <a class="fixed " href="./profile.php">Profile</a>
         <a class="fixed" href="./app/auth/logout.php">Log out</a>
           <?php else: ?>

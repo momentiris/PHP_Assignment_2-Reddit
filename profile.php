@@ -65,16 +65,16 @@ foreach ($getProfile['userinfo'] as $info) :?>
       <article class="editForm hidden">
         <form class="" action="app/auth/editprofile.php" method="post">
             <div class="form-group">
-                <label for="title" class="small">Username</label>
-                <input id="usernameInput" class="form-control inputArea" type="text" name="username" value="<?php echo $info['username'];?>" required>
+                <label for="title" class="small">Username</label></br>
+                <input id="usernameInput" class="inputArea" type="text" name="username" value="<?php echo $info['username'];?>" required>
             </div><!-- /form-group -->
             <div class="form-group">
-                <label for="content" class="small">Email</label>
-                <input class="form-control inputArea" type="text" name="email" value="<?php echo $info['email'];?>" required>
+                <label for="content" class="small">Email</label></br>
+                <input class=" inputArea" type="text" name="email" value="<?php echo $info['email'];?>" required>
             </div><!-- /form-group -->
             <div class="form-group">
-                <label for="content" class="small">Biography</label>
-                <textarea maxlength="240"class="form-control contentArea inputArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
+                <label for="content" class="small">Biography</label></br>
+                <textarea maxlength="240"class="form-control contentArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
             </div><!-- /form-group -->
             <button type="submit" class="">Submit</button>
         </form>
@@ -82,12 +82,12 @@ foreach ($getProfile['userinfo'] as $info) :?>
     <article class=" editPwForm hidden">
       <form class="editPwForm" action="app/auth/editprofile.php" method="post">
         <div class="form-group">
-            <label for="password" class="small">Old password</label>
-            <input class="form-control inputArea" type="password" name="oldpassword">
-            <label for="password" class="small">New password</label>
-            <input class="form-control inputArea" type="password" name="newpassword">
-            <label for="password" class="small">Repeat new password</label>
-            <input class="form-control inputArea" type="password" name="newpassword">
+            <label for="password" class="small">Old password</label></br>
+            <input class=" inputArea" type="password" name="oldpassword"></br>
+            <label for="password" class="small">New password</label></br>
+            <input class=" inputArea" type="password" name="newpassword"></br>
+            <label for="password" class="small">Repeat new password</label></br>
+            <input class=" inputArea" type="password" name="newpassword">
         </div><!-- /form-group -->
         <button type="submit" class="">Submit</button>
       </form>

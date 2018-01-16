@@ -25,9 +25,9 @@ if (!$getPost) : ?>
         <p class="small time">Submitted by <a href="/profile.php?"><?php echo $getPost[0]['username']; ?></a> on <?php echo $getPost[0]['time']; ?></p>
       </div>
       <div class="voting">
-        <button class="upvotePost" data-dir="+1" value="<?php echo $getPost[0]['id']; ?>">Upvote</button>
+        <button class="upvote" data-dir="+1" value="<?php echo $getPost[0]['id']; ?>">Upvote</button>
         <small class="votes"><?php echo $getVote[0]; ?></small>
-        <button class="downvotePost" data-dir="-1" value="<?php echo $getPost[0]['id']; ?>">Downvote</button>
+        <button class="downvote" data-dir="-1" value="<?php echo $getPost[0]['id']; ?>">Downvote</button>
       </div>
     </div>
   </div>
@@ -39,8 +39,8 @@ if (!$getPost) : ?>
   <article class="">
     <form class="postForm" action="app/posts/comments/insert.php" method="post">
       <div class="form-group">
-        <label for="content" class="small">Content</label>
-        <textarea class="form-control contentArea inputArea"  type="text" name="content" required></textarea>
+        <label for="content" class="small">Content</label></br>
+        <textarea class"contentArea"  type="text" name="content" required></textarea></br>
       </div><!-- /form-group -->
       <input type="hidden" name="id" value="<?php echo $postId ?>" >
       <button type="submit" class="">Submit</button>

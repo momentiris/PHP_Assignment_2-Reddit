@@ -1,25 +1,25 @@
 <?php require __DIR__.'/views/header.php'; ?>
+<div class="container py-3">
+ <h4>Login</h4>
+</div>
+<div class="container py-2 registrationWrap"
+  <div class="loginform">
+  <article>
 
-<div class="loginform">
-<article>
-    <h1>Login</h1>
+      <form action="app/auth/login.php" method="post">
+          <div class="form-group">
+              <label for="email">Username:</label> </br>
+              <input class="inputArea" type="text" name="username" placeholder="Pls dont hack" required>
+          </div><!-- /form-group -->
 
-    <form action="app/auth/login.php" method="post">
-        <div class="form-group">
-            <label for="email">Username</label>
-            <input class="form-control" type="text" name="username" placeholder="Pls dont hack" required>
-            <small class="form-text text-muted">Please provide your email address.</small>
-        </div><!-- /form-group -->
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" required>
-            <small class="form-text text-muted">Please provide the your password (passphrase).</small>
-        </div><!-- /form-group -->
-
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</article>
+          <div class="form-group">
+              <label for="password">Password:</label></br>
+              <input class="inputArea" type="password" name="password" required>
+          </div><!-- /form-group -->
+          <button type="submit">Login</button>
+      </form>
+  </article>
+  </div>
 </div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

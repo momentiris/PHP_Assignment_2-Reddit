@@ -2,37 +2,35 @@
 require 'views/header.php';
  ?>
 
-
-<div class="container py-2">
+<div class="container py-3">
+ <h4>Registration</h4>
+</div>
+<div class="container py-2 registrationWrap">
 <article class="">
-    <h1>Registration</h1>
-
-    <form action="app/auth/registration.php" method="post">
+    <form class="registrationForm" action="app/auth/registration.php" method="post">
+      <!-- /form-group -->
         <div class="form-group">
           <p class="deniedUsername small"></p>
-            <label for="username">Username</label>
-            <input id="usernameInput" class="form-control" placeholder="Please choose a username." type="text" name="username" " required>
-        </div><!-- /form-group -->
-
+            <label for="username">Username:</label></br>
+            <input class="inputArea" id="usernameInput" class="form-control" placeholder="Please choose a username." type="text" name="username" required>
+        </div>
+        <!-- /form-group -->
         <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" placeholder="Please provide your email address." required>
-
-        </div><!-- /form-group -->
-
+            <label for="email">Email:</label></br>
+            <input class="inputArea" type="email" name="email" placeholder="Please provide your email address." required>
+        </div>
+        <!-- /form-group -->
         <div class="form-group">
-            <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" placeholder="Please choose your password " required>
-
-        </div><!-- /form-group -->
-
+            <label for="password">Password:</label></br>
+            <input class="inputArea" type="password" name="password" placeholder="Please choose your password " required>
+        </div>
+        <!-- /form-group -->
         <div class="form-group">
-            <label for="password">Repeat password</label>
-            <input class="form-control" type="password" name="passwordRep" required placeholder="Please repeat your password">
+            <label for="password">Repeat password:</label> </br>
+            <input class="inputArea" type="password" name="passwordRep" required placeholder="Please repeat your password">
+        </div>
 
-        </div><!-- /form-group -->
-
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button class="submit" type="submit">Register</button>
     </form>
 </article>
 </div>

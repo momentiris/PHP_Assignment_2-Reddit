@@ -13,12 +13,14 @@ let divElement = document.createElement('div');
 // generate upvote and downvote element
 let upvoteBtn = document.createElement('button');
 upvoteBtn.classList.add('upvote');
-upvoteBtn.innerText = "upvotes";
+upvoteBtn.innerText = "A";
 upvoteBtn.dataset.dir = "+1";
 ///////////////////////////
 let downvoteBtn = document.createElement('button');
 downvoteBtn.classList.add('downvote');
-downvoteBtn.innerText = "downvote";
+
+
+downvoteBtn.innerText = "Ω";
 downvoteBtn.dataset.dir = "-1";
 // end
 
@@ -110,7 +112,7 @@ const getPage = (page) => {
                   <p class="small time">Submitted by <a href="/profile.php?user=${posts.author_id}">${posts.username}</a> on ${posts.time}</p>
                 </div>
                 <div class="voting">
-                  ${upvoteBtn.outerHTML}
+                   ${upvoteBtn.outerHTML}
                 <small class="votes">${posts.votes}</small>
                   ${downvoteBtn.outerHTML}
                 </div>
@@ -125,11 +127,13 @@ const getPage = (page) => {
 
         for (votedpost of postsOnPage['uservoted'][0]) {
           for (button of generatedButtonsUp) {
+            button.style.cssText = "border: none; font-size: 20px; outline: none; cursor: pointer;";
             if (button.value == votedpost.post_id && votedpost.vote_value == 1) {
               button.classList.add('upvoted');
             }
           }
           for (button of generatedButtonsDown) {
+            button.style.cssText = "border: none;  font-size: 20px; outline: none; cursor: pointer;";
             if (button.value == votedpost.post_id && votedpost.vote_value == -1) {
               button.classList.add('downvoted');
             }

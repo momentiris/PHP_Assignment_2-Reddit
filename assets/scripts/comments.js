@@ -1,5 +1,5 @@
-const upvotePost = document.querySelector('.upvotePost');
-const downvotePost = document.querySelector('.downvotePost');
+const upvotePost = document.querySelector('.upvote');
+const downvotePost = document.querySelector('.downvote');
 const voteApi = 'http://localhost:8888/app/auth/votes.php';
 
 const voteFunc = (e) => {

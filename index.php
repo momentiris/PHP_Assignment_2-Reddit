@@ -8,16 +8,16 @@
     <article class="hidden">
       <form class="postForm" action="app/posts/newpost.php" method="post">
           <div class="form-group">
-              <label for="title" class="small">Title</label>
-              <input id="usernameInput" class="form-control inputArea" type="text" name="title" required>
+              <label for="title" class="small">Title</label></br>
+              <input id="usernameInput" class="inputArea" type="text" name="title" required></br>
           </div><!-- /form-group -->
           <div class="form-group">
-              <label for="url" class="small">Url</label>
-              <input class="form-control inputArea" type="url" name="url">
+              <label for="url" class="small">Url</label></br>
+              <input class="inputArea" type="url" name="url"></br>
           </div><!-- /form-group -->
           <div class="form-group">
-              <label for="content" class="small">Content</label>
-              <textarea class="form-control contentArea inputArea"  type="text" name="content" required></textarea>
+              <label for="content" class="small">Content</label></br>
+              <textarea class=" contentArea "  type="text" name="content" required></textarea>
           </div><!-- /form-group -->
           <button type="submit" class="">Post</button>
       </form>
