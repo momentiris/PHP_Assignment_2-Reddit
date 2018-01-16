@@ -15,9 +15,11 @@ if (isset($_POST['oldpassword'])) {
   $newPw = $_POST['newpassword'];
   $editPw = editPassword($pdo, $inputOld, $newPw, $sId);
   if ($editPw) {
-    redirect('/../../login.php');
+    $_SESSION['message'] = "Your password has been updated";
+    redirect('/../../profile.php');
     # code...
   } else {
+    $_SESSION['message'] = "Something went wrong, try again!";
     redirect('/../../profile.php');
   }
 }

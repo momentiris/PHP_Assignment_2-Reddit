@@ -25,11 +25,7 @@ require 'views/header.php';
             <input class="inputArea" type="password" name="password" placeholder="Please choose your password " required>
         </div>
         <!-- /form-group -->
-        <div class="form-group">
-            <label for="password">Repeat password:</label> </br>
-            <input class="inputArea" type="password" name="passwordRep" required placeholder="Please repeat your password">
-        </div>
-
+    
         <button class="submit" type="submit">Register</button>
     </form>
 </article>

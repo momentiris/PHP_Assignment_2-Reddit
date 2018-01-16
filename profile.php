@@ -61,6 +61,9 @@ foreach ($getProfile['userinfo'] as $info) :?>
     <div class="edits">
       <p class="editprofile small">Edit profile</p>
       <p class="editpassword editprofile small">Edit password</p>
+        <?php if (isset($_SESSION['message'])) : ?>
+          <p class="small"><?php echo $_SESSION['message']; ?></p>
+        <?php endif; unset($_SESSION['message']); ?>
     </div>
       <article class="editForm hidden">
         <form class="" action="app/auth/editprofile.php" method="post">
