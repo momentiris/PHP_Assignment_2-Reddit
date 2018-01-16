@@ -1,6 +1,6 @@
 # Cyberlink
 
-<img src="https://gph.is/2qhBVFU" width="100%">
+<img src="https://gph.is/2qhBVFU">
 
 ## For more information about the requirements and info about the project visit..
 
