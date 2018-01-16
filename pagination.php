@@ -6,11 +6,14 @@ require __DIR__.'/app/autoload.php';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $postsPerPage = 5;
 $start = ($page > 1) ? ($page * $postsPerPage) - $postsPerPage : 0;
-// $sId = $_SESSION['user']['id'];
+
 $checkUserVotesQ = "SELECT
                     post_id, vote_value FROM
                     uservotes WHERE
-                    user_id = :user_id AND vote_value = -1 OR user_id = :user_id AND vote_value = +1";
+                    user_id = :user_id AND
+                    vote_value = -1 OR
+                    user_id = :user_id AND
+                    vote_value = +1";
 $checkUserVotes = $pdo->prepare($checkUserVotesQ);
 $checkUserVotes->bindParam(':user_id', $sId, PDO::PARAM_STR);
 $checkUserVotes->execute();
@@ -22,7 +25,12 @@ $countPosts ->execute();
 $totalAmountOfPosts = $countPosts->fetch(PDO::FETCH_NUM);
 
 //Get total amount of votes
-$countVotes = $pdo->prepare("SELECT id, sum(uservotes.vote_value) as totalvalue from posts LEFT JOIN uservotes ON uservotes.post_id = posts.id GROUP BY posts.id LIMIT $start, $postsPerPage");
+$countVotes = $pdo->prepare("SELECT id, sum(uservotes.vote_value) as
+                             totalvalue from
+                             posts LEFT JOIN
+                             uservotes ON
+                             uservotes.post_id = posts.id GROUP BY
+                             posts.id LIMIT $start, $postsPerPage");
 $countVotes ->execute();
 $totalAmountOfVotes = $countVotes->fetchAll(PDO::FETCH_ASSOC);
 
@@ -34,7 +42,10 @@ $sId = $_SESSION['user']['id'];
 $checkUserVotesQ = "SELECT
                     post_id, vote_value FROM
                     uservotes WHERE
-                    user_id = :user_id AND vote_value = -1 OR user_id = :user_id AND vote_value = +1";
+                    user_id = :user_id AND
+                    vote_value = -1 OR
+                    user_id = :user_id AND
+                    vote_value = +1";
 $checkUserVotes = $pdo->prepare($checkUserVotesQ);
 $checkUserVotes->bindParam(':user_id', $sId, PDO::PARAM_STR);
 $checkUserVotes->execute();

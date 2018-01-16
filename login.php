@@ -5,7 +5,6 @@
 <div class="container py-2 registrationWrap"
   <div class="loginform">
   <article>
-
       <form action="app/auth/login.php" method="post">
           <div class="form-group">
               <label for="email">Username:</label> </br>

@@ -25,9 +25,9 @@ if (!$getPost) : ?>
         <p class="small time">Submitted by <a href="/profile.php?"><?php echo $getPost[0]['username']; ?></a> on <?php echo $getPost[0]['time']; ?></p>
       </div>
       <div class="voting">
-        <button class="upvote" data-dir="+1" value="<?php echo $getPost[0]['id']; ?>">Upvote</button>
+        <button class="upvote" data-dir="+1" value="<?php echo $getPost[0]['id']; ?>">A</button>
         <small class="votes"><?php echo $getVote[0]; ?></small>
-        <button class="downvote" data-dir="-1" value="<?php echo $getPost[0]['id']; ?>">Downvote</button>
+        <button class="downvote" data-dir="-1" value="<?php echo $getPost[0]['id']; ?>">Ω</button>
       </div>
     </div>
   </div>

@@ -7,5 +7,8 @@ if (isset($_POST)) {
   $content = $_POST['content'];
   $username = $_SESSION ['user']['name'];
   $time = timeRightNow();
-  insertComment($pdo, $postId, $sId, $username, $time, $content);
+  $insertComment = insertComment($pdo, $postId, $sId, $username, $time, $content);
+  if ($insertComment) {
+    redirect("/comments.php?post=$postId");
+  }
 }

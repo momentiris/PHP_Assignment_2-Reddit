@@ -228,6 +228,7 @@ function insertComment($pdo, $postId, $sId, $username, $time, $content) {
   $comments->bindParam(':content', $content, PDO::PARAM_STR);
   $comments->bindParam(':username', $username, PDO::PARAM_STR);
   $comments->execute();
+  return true;
 }
 
 function getComments($pdo, $postId) {

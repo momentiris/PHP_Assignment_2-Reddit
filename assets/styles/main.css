@@ -1,3 +1,13 @@
+@media only screen and (max-width: 500px) {
+  .postCont {
+    height: auto !important;
+  }
+
+  .welcomeUser {
+    position: relative !important;
+  }
+}
+
 html {
   font-size: 14px;
 }
@@ -5,7 +15,13 @@ html {
 * {
   font-family: 'Roboto Mono';
 }
-
+button {
+  outline: none !important;
+}
+textarea {
+  width: 300px;
+  height: 100px;
+}
 body {
   width: 100vw;
 }
@@ -70,9 +86,10 @@ body {
 .fleshbacklogo {
   font-size: 20px;
   color: black;
-  margin-right: 1rem;
+  margin: 0rem 1rem 0rem 0rem;
   display: flex;
   align-items: flex-end;
+
 }
 
 .navbox {
@@ -89,7 +106,8 @@ body {
 }
 
 .navcontainerFixed {
-
+  border-bottom: 1px dashed black;
+  margin: 0rem 1rem 0rem 1rem;
 }
 
 .reply {
@@ -99,7 +117,6 @@ body {
 .whites {
   background-color: white;
   width: 100%;
-  border-bottom: 1px dashed black;
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
@@ -176,18 +193,20 @@ body {
   height: 90px;
   align-self: center;
 }
+.countMe {
+  width: 100%;
 
+}
 .contentCont {
-  width: 90%;
+  width: 100%;
+
 }
 
-.contentarea {
-
-
+.contentArea {
   padding: 5px;
   resize: none;
   border-radius: 0;
-
+  outline: none;
 }
 
 .inputArea {
@@ -215,7 +234,7 @@ body {
   color: #007bff;
 }
 
-.postboxcontainer {
+.postcontainercontainer {
   padding-bottom: 0 !important;
 }
 
@@ -223,8 +242,6 @@ body {
   margin: 0;
   position: relative;
 }
-
-.post-show {}
 
 .postForm {
   margin-bottom: 2rem;
@@ -234,6 +251,7 @@ body {
   transition: all .3s ease;
   position: relative;
   padding-top: 0 !important;
+
 }
 
 .time {
@@ -269,20 +287,17 @@ body {
 .deniedUsername {
   color: red;
   margin: 0;
-
   left: 20%;
   top: 15%;
 }
 .upvote {
   border: none;
 font-size: 20px;
-outline: none;
 cursor: pointer;
 }
 .downvote {
   border: none;
 font-size: 20px;
-outline: none;
 cursor: pointer;
 }
 

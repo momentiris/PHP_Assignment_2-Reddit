@@ -74,7 +74,7 @@ foreach ($getProfile['userinfo'] as $info) :?>
             </div><!-- /form-group -->
             <div class="form-group">
                 <label for="content" class="small">Biography</label></br>
-                <textarea maxlength="240"class="form-control contentArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
+                <textarea maxlength="240"class="contentArea"  type="text" name="biography" required><?php echo $info['biography'];?></textarea>
             </div><!-- /form-group -->
             <button type="submit" class="">Submit</button>
         </form>

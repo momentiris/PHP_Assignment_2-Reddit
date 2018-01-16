@@ -18,8 +18,6 @@ upvoteBtn.dataset.dir = "+1";
 ///////////////////////////
 let downvoteBtn = document.createElement('button');
 downvoteBtn.classList.add('downvote');
-
-
 downvoteBtn.innerText = "Ω";
 downvoteBtn.dataset.dir = "-1";
 // end

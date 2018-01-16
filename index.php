@@ -1,10 +1,11 @@
 <?php require __DIR__.'/views/header.php';
-
-  ?>
+if (!isset($_SESSION['user']['name'])) : ?>
+  <div class="nothingToShow">
+    <h6>Please <a href="./login.php"> login </a>to show secret content. </br>Not a secret member?<a href="./registration.php"> Register here! </a></h6>
+  </div>
+<?php else: ?>
   <div class="postboxcontainer container py-3" style="margin: 0;">
     <h3 class="newpost">New post</h3>
-
-    <!-- <h3 class="newpost">New post</h3> -->
     <article class="hidden">
       <form class="postForm" action="app/posts/newpost.php" method="post">
           <div class="form-group">
@@ -34,4 +35,4 @@
   <img class="loading loadingHidden" src="assets/loading/2.gif" alt="">
 </div>
 
-<?php require __DIR__.'/views/footer.php'; ?>
+<?php endif; require __DIR__.'/views/footer.php'; ?>
