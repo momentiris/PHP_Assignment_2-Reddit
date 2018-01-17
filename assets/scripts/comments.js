@@ -1,7 +1,7 @@
 const upvotePost = document.querySelector('.upvote');
 const downvotePost = document.querySelector('.downvote');
 const voteApi = 'http://localhost:8888/app/auth/votes.php';
-
+// This is the same as votes.js voteFunc but for inside the comments section.
 const voteFunc = (e) => {
   fetch(voteApi, {
       method: "POST",

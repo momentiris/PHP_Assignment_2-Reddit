@@ -19,7 +19,6 @@ if (isset($_POST['oldpassword'])) {
   if ($editPw) {
     $_SESSION['message'] = "Your password has been updated";
     redirect('/../../profile.php');
-    # code...
   } else {
     $_SESSION['message'] = "Something went wrong, try again!";
     redirect('/../../profile.php');

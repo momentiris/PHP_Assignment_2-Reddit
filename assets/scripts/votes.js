@@ -22,6 +22,9 @@ downvoteBtn.innerText = "Ω";
 downvoteBtn.dataset.dir = "-1";
 // end
 
+//voteFunc recieves the clicked upvote/downvote and sends it value and dataset to votes.php
+//votes.php return the vote value and then inside the fetch i add/remove classes depending on vote value.
+//wanted to get the received value instead of reading button value directly to ensure no class is added until the fetch returns a value.
 const voteFunc = (e) => {
   fetch(voteApi, {
       method: "POST",
@@ -50,7 +53,7 @@ const voteFunc = (e) => {
         default:
       }
     })
-
+// Another fetch to get the new total sum of votes for the post and update score accordingly.
   fetch(voteApi, {
       method: "POST",
       headers: {
@@ -74,7 +77,8 @@ const upvote = (upvote) => {
 const downvote = (downvote) => {
   downvote.addEventListener('click', voteFunc);
 }
-
+// getPage makes a post to pagination.php which return posts. CHeck pagination.php JSON output for clarification ;)
+// Then it loops out the complete post in accordance with the JSON data returned from pagination.php
 const getPage = (page) => {
   loading.classList.remove('loadingHidden');
   fetch(`${api}/?page=${page}`, {
@@ -121,7 +125,7 @@ const getPage = (page) => {
 
         let generatedButtonsUp = document.querySelectorAll('.upvote');
         let generatedButtonsDown = document.querySelectorAll('.downvote');
-
+// This just for styling my JS created buttons.
         for (votedpost of postsOnPage['uservoted'][0]) {
           for (button of generatedButtonsUp) {
             button.style.cssText = "border: none; font-size: 20px; outline: none; cursor: pointer;";
@@ -148,6 +152,7 @@ const getPage = (page) => {
 getPage(pageNum);
 
 //eventlistener for detecting if user scrolled to bottom. Only runs getPage func if current amount of posts generated in dom is less than total amount of posts in DB.
+//This works better if resolution is like my computer where the body is higher than window without the "New post" curtain form visible. Else just toggle "new post" for it to work.
 window.addEventListener('scroll', function() {
   let currentAmountOfPosts = postContainer.querySelectorAll('.countMe').length;
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && currentAmountOfPosts < totalPosts && triggerHappy == true) {

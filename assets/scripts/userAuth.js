@@ -1,9 +1,8 @@
-
-
 const usernameField = document.querySelector('#usernameInput');
 const deniedUsername = document.querySelector('.deniedUsername');
 const submitBtn = document.querySelector('.submit');
 
+// For every key up, we match the user input with database of users.
 fetch(`../../search_users.php`)
   .then(response => {
     return response.json();

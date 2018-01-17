@@ -2,12 +2,12 @@
 declare(strict_types=1);
 require '../autoload.php';
 
-
+//check for file
 if (isset($_FILES)) {
   $targetDir = '../../avatars';
   $avOrigin = $_FILES['avatar']['tmp_name'];
   $fileName = $_SESSION['user']['name'] . '.png';
-
+//check for !null width/height values to ensure its an image.
   list($width, $height) = getimagesize($avOrigin);
   if ($width == null && $height == null) {
     $_SESSION['message'] = "Only images allowed...";

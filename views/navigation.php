@@ -2,6 +2,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 
+
 <div class="navcontainerFixed">
   <nav class="navbar navbar-expand-sm navbar-light whites">
     <img class="logotype" src="/assets/chilluminati.jpeg" alt="">
